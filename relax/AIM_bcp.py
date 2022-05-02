@@ -703,25 +703,21 @@ def main():
             print('cannot find input file:', infile)
             exit(1)
         else:
-            indata = np.load(infile)
-            if 'H_bond_list' in list(indata):
-                H_bond_list = indata['H_bond_list']
-                print('get H_bond_list(len=%d) form %s' % (len(H_bond_list), infile))
+            indata = np.load(infile,allow_pickle=True)
+            bond_list = indata['list'].item()
+            print('get bond list(len=%d) from %s' % (len(bond_list), infile))
+            
+            print('finding bcp')
+            atoms = []
+            for atomAB in bond_list.keys():
+                A, B = atomAB.split('-')
+                atoms.append((A, B))
+            bcp_ans = bat_autom_find_bcp(atoms, is_print=False, is_print_result=False)
+            print('have found %d/%d bcp, add to %s as ans' % (len(bond_list), len(bcp_ans), infile))
+            np.savez(infile, list=bond_list, ans=bcp_ans)
+            
                 
-                print('finding bcp')
-                cell_param, df = read_contcar()
-                atoms = []
-                for atomAB in H_bond_list:
-                    A, B = atomAB.split('-')
-                    atoms.append((A, B))
-                bcp_ans = bat_autom_find_bcp(atoms, is_print=False, is_print_result=False)
-                print('have found %d/%d bcp, add to %s as bcp_ans' % (len(H_bond_list), len(bcp_ans), infile))
-                
-                
-                
-                np.savez(infile, H_bond_list=H_bond_list, bcp_ans=bcp_ans)
-                
-                exit(0)      
+            exit(0)      
 
     else:
         help_print()

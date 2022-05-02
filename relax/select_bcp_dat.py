@@ -126,7 +126,7 @@ def main():
     
     def help_print():
         print('usage      : python select_bcp_dat.py atom_1-atom_2 atom_A(all bcp) ... (> this_bcp.dat) | python -file (bcp_data.npz)')
-        print('   -file   : input file bcp_data.npy to select atoms bcp interest, like H_bond_list from find_H_bond.py -dist 3 -save & bcp_ans from AIM_bcp.py -file')
+        print('   -file f : input file f to select atoms bcp interest, like H_bcp-data.npz from find_H_bond.py -dist 3 -save f &  AIM_bcp.py -file f')
         print('note       : must have bcp_result(AIM_bcp.py -normal > bcp_result)')
     if '-h' in argv:
         help_print()
@@ -146,19 +146,21 @@ def main():
             exit(1)
         else:
             indata = np.load(infile,allow_pickle=True)
-            H_bond_list = indata['H_bond_list'] # ndarray
-            bcp_ans = indata['bcp_ans'].item() # dict
             
-            bcp_passed = {}
+            bond_list = indata['list'].item() # dict
+            bcp_ans = indata['ans'].item() # dict
+            
+            bcp_passed, MA_sum = {},{}
             npos_passed = []
             list_of_MA = ['CH'+str(x+1) for x in range(8)] + ['NH'+str(x+1) for x in range(8)] + ['MA'+str(x+1) for x in range(8)]
             for elem in list_of_MA:
-                bcp_passed[elem] = 0 # add CH1 CH2 NH3 MA4 ... to bcp_passed
+                MA_sum[elem] = 0 # add CH1 CH2 NH3 MA4 ... to bcp_passed
+            MA_sum['total'] = 0
                 
-            for H_bond in H_bond_list:
+            for bond in bond_list.keys():
                 flag_passed = True
-                if H_bond in bcp_ans.keys():
-                    density, cpoint, npoint, distA, distB, norm = bcp_ans[H_bond]
+                if bond in bcp_ans.keys():
+                    density, cpoint, npoint, distA, distB, norm = bcp_ans[bond]
                     # norm check 
                     if norm > 50:
                         flag_passed = False
@@ -170,19 +172,16 @@ def main():
                         #     if npoint == bcp_passed[key]
                         pass
                     if flag_passed:
-                        bcp_passed[H_bond] = density
-                        H_num = H_bond.split('-')[0]
-                        bcp_passed[get_CNH(H_num)] += density
-                        bcp_passed[get_MA(get_CNH(H_num))] += density
+                        bcp_passed[bond] = density
+                        atomA, atomB = bond.split('-')
+                        H_num = atomA if 'H' in atomA else atomB
+                        MA_sum[get_CNH(H_num)] += density
+                        MA_sum[get_MA(get_CNH(H_num))] += density
+                        MA_sum['total'] += density
                         npos_passed.append(npoint)
-                        
-            
-            
-            
-            
             # save
-            print('select %d/%d bcp, add to bcp_data.npz as bcp_passed' % (len(bcp_passed), len(bcp_ans)))
-            np.savez(infile, H_bond_list=H_bond_list, bcp_ans=bcp_ans, bcp_passed=bcp_passed)
+            print('select %d/%d bcp, add to %s as passed and sum' % (len(bcp_passed), len(bcp_ans), infile))
+            np.savez(infile, list=bond_list, ans=bcp_ans, passed=bcp_passed, sum=MA_sum)
             exit(0)
                     
             

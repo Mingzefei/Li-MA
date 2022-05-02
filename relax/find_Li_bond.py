@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
 '''
-@File : find_H_bond.py
-@Time : 2022/04/20 22:01:37
+@File : find_Li_bond.py
+@Time : 2022/05/02 15:17:46
 @Auth : Ming 
-@Vers : 1.3 # 0502:add -save file
-@Desc : find H bond for AIM_bcp.py -npart
-@Usag : python find_H_bond.py -dist 5 (-save H_bcp_data.npz)
+@Vers : 1.0
+@Desc : find Li-H bond for AIM_bcp.py
+@Usag : python find_Li_bond.py -dist 5 (-save Li_bcp_data.npz)
 '''
 
 # here put the import lib
@@ -125,7 +125,8 @@ def super_poscar(cell_param:np.ndarray, atoms_cpos:DataFrame)->DataFrame:
     """
     super_atoms_cpos = pd.DataFrame({}, columns=['elem', 'x_cpos', 'y_cpos', 'z_cpos', 'atom_num']) #
     for atom in atoms_cpos.index:
-        if 'Cl' in atom or 'Br' in atom or 'I' in atom:
+        # if 'Cl' in atom or 'Br' in atom or 'I' in atom:
+        if 'Li' in atom:
 
             elem, x_cpos, y_cpos, z_cpos = list(atoms_cpos.loc[atom])
             add_data = pd.DataFrame([elem, x_cpos, y_cpos, z_cpos, atom], index=['elem', 'x_cpos', 'y_cpos', 'z_cpos', 'atom_num'])
@@ -142,7 +143,7 @@ def super_poscar(cell_param:np.ndarray, atoms_cpos:DataFrame)->DataFrame:
                 for temp_y_dpos in (y_dpos-1,y_dpos,y_dpos+1):
                     for temp_z_dpos in (z_dpos-1,z_dpos,z_dpos+1):
                         super_atoms_cpos = add_to_super(temp_x_dpos,temp_y_dpos,temp_z_dpos,cell_param,elem,atom,super_atoms_cpos)
-            
+
             # # a+1
             # temp_x_dpos,temp_y_dpos,temp_z_dpos = x_dpos + 1,y_dpos,z_dpos
             # temp_x_cpos, temp_y_cpos, temp_z_cpos = get_cpos([temp_x_dpos, temp_y_dpos, temp_z_dpos],cell_param[0], cell_param[1], cell_param[2],1)
@@ -169,24 +170,26 @@ def super_poscar(cell_param:np.ndarray, atoms_cpos:DataFrame)->DataFrame:
             # add_data = pd.DataFrame([elem, temp_x_cpos, temp_y_cpos, temp_z_cpos, atom], index=['elem', 'x_cpos', 'y_cpos', 'z_cpos', 'atom_num'])
             # super_atoms_cpos = pd.concat([super_atoms_cpos, add_data.T], ignore_index=True)
             # # c-1
-            # temp_x_dpos,temp_y_dpos,temp_z_dpos = x_dpos,y_dpos,z_dpos - 1
+            # temp_x_dpos,temp_y_dpos,temp_z_dpos = x_dpos - 1,y_dpos,z_dpos - 1
             # temp_x_cpos, temp_y_cpos, temp_z_cpos = get_cpos([temp_x_dpos, temp_y_dpos, temp_z_dpos],cell_param[0], cell_param[1], cell_param[2],1)
             # add_data = pd.DataFrame([elem, temp_x_cpos, temp_y_cpos, temp_z_cpos, atom], index=['elem', 'x_cpos', 'y_cpos', 'z_cpos', 'atom_num'])
             # super_atoms_cpos = pd.concat([super_atoms_cpos, add_data.T], ignore_index=True)
-    # print(super_atoms_cpos.loc[super_atoms_cpos.atom_num == 'Cl20'])
+    # print(super_atoms_cpos)
     return super_atoms_cpos
-    pass
+
 def all_H_X_dist(atoms_cpos:DataFrame, super_atoms_cpos:DataFrame)->DataFrame:
     """
-    get a df which index is H_num, colum append dist of Cl_num
+    get a df which index is H_num, colum append dist of Li_num
     
     :return all_dist: output dist of H-X
     """
-    X_column = list(atoms_cpos[atoms_cpos.elem == 'Cl'].index)
-    X_column += list(atoms_cpos[atoms_cpos.elem == 'Br'].index)
-    X_column += list(atoms_cpos[atoms_cpos.elem == 'I'].index)
+    # X_column = list(atoms_cpos[atoms_cpos.elem == 'Cl'].index)
+    # X_column += list(atoms_cpos[atoms_cpos.elem == 'Br'].index)
+    # X_column += list(atoms_cpos[atoms_cpos.elem == 'I'].index)
+    X_column = list(atoms_cpos[atoms_cpos.elem == 'Li'].index)
     H_index = list(atoms_cpos[atoms_cpos.elem == 'H'].index)
     all_dist = pd.DataFrame({},index=H_index,columns=X_column)
+    # print(X_column,H_index,all_dist)
     for H_num in tqdm(all_dist.index):
         for X_index in super_atoms_cpos.index:
             X_num = super_atoms_cpos.iloc[X_index]['atom_num']
@@ -194,15 +197,13 @@ def all_H_X_dist(atoms_cpos:DataFrame, super_atoms_cpos:DataFrame)->DataFrame:
             X_cpos = super_atoms_cpos.loc[X_index,['x_cpos','y_cpos','z_cpos']]
             the_dist = dist(H_cpos,X_cpos)
             if all_dist.loc[H_num,X_num] is np.NaN or all_dist.loc[H_num,X_num] > the_dist:
-                # if H_num == 'H18' and X_num == 'Cl20':
-                #     print(all_dist.loc[H_num,X_num], the_dist)
                 all_dist.loc[H_num,X_num] = the_dist
     return all_dist
     pass
 def print_passed_dist(all_dist:DataFrame, threshold:float, is_print=True)->dict:
     """
     dist < threshold atoms
-    :param is_print=True: 'H1-Cl2'...
+    :param is_print=True: 'Li1-H2'...
     :return ans: list of bonds passed
     """
     # passed_atoms = {}
@@ -226,25 +227,14 @@ def print_passed_dist(all_dist:DataFrame, threshold:float, is_print=True)->dict:
     pass
 
 def print_help():
-    print('usage      : python find_H_bond.py -dist 5 (-save)')
+    print('usage      : python find_Li_bond.py -dist 5 (-save)')
     print('   -h      : print help')
     print('   -dist n : atoms < the dist n')
-    print('   -save f : save data as H_bond_list in file f(like H_bond_data.npz) ')
+    print('   -save f : save data as Li_bond_list in file f(like Li_bond_data.npz) ')
     pass
 
 
 def main():
-    
-    # cell_param, cont_df = read_contcar(file_name='CONTCAR')
-    # # print(cont_df)
-    # a_atom_cpos=cont_df.loc['H2',['x_cpos','y_cpos','z_cpos']]
-    # b_atom_cpos=cont_df.loc['Cl24',['x_cpos','y_cpos','z_cpos']]
-    # # print(a_atom_cpos,b_atom_cpos)
-    # # print(dist(a_atom_cpos, b_atom_cpos))
-    # super_atoms_cpos = super_poscar(cell_param, cont_df)
-    # all_dist = all_H_X_dist(cont_df, super_atoms_cpos)
-    # passed_atoms = print_passed_dist(all_dist,5)
-    
     if '-h' in argv:
         print_help()
         exit(0)
@@ -252,7 +242,7 @@ def main():
         threshold = float(argv[argv.index('-dist')+1])
         cell_param, cont_df = read_contcar(file_name='CONTCAR')
         super_atoms_cpos = super_poscar(cell_param, cont_df)
-        print('finding H bond (dist < %f)' % threshold)
+        print('finding Li-H bond (dist < %f)' % threshold)
         all_dist = all_H_X_dist(cont_df, super_atoms_cpos)
         if '-save' in argv:  
             datafile = argv[argv.index('-save')+1]
@@ -260,18 +250,14 @@ def main():
 
             np.savez(datafile, list=passed_atoms)
                 
-            print('H bond(list, len=%d) save as %s' % (len(passed_atoms), datafile))
+            print('Li-H bond(list, len=%d) save as %s' % (len(passed_atoms), datafile))
         else:
             passed_atoms = print_passed_dist(all_dist,threshold,True)
         exit(0)
     else:
         print_help()
         exit(1)
-
-def debug():
-
     pass
 
 if __name__ == '__main__':
-    main()  
-    # debug()
+    main()

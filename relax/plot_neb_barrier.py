@@ -10,7 +10,6 @@
 '''
 
 # here put the import lib
-from cProfile import label
 import matplotlib.pyplot as plt
 import numpy as np
 from scipy.interpolate import make_interp_spline
