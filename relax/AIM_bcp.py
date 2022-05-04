@@ -516,7 +516,7 @@ def autom_find_bcp(atomA:str, atomB:str, cell_param, df, NGF, chg, grad, hess, i
             if eps > 1e5:
                 if is_print or is_print_result:
                     print('find no point satisfied bcp, please check atom: %s %s' % (atomA, atomB))
-                return []
+                return np.array([])
             else:
                 # reset eps of check 1 and keep checking
                 eps *= 10
@@ -534,7 +534,7 @@ def autom_find_bcp(atomA:str, atomB:str, cell_param, df, NGF, chg, grad, hess, i
                 if eps > 1e5:
                     if is_print or is_print_result:
                         print('find no point satisfied bcp, please check atom: %s %s' % (atomA, atomB))
-                    return []
+                    return np.array([])
                 else:   
                     eps *= 10
             else: # have found aim point
@@ -713,6 +713,9 @@ def main():
                 A, B = atomAB.split('-')
                 atoms.append((A, B))
             bcp_ans = bat_autom_find_bcp(atoms, is_print=False, is_print_result=False)
+            for key in list(bcp_ans.keys()):
+                if bcp_ans[key].size == 0:
+                    del bcp_ans[key]
             print('have found %d/%d bcp, add to %s as ans' % (len(bond_list), len(bcp_ans), infile))
             np.savez(infile, list=bond_list, ans=bcp_ans)
             

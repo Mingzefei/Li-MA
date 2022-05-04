@@ -16,6 +16,8 @@ from scipy.interpolate import make_interp_spline
 from pymatgen.io.vasp.outputs import Vasprun
 from pymatgen.electronic_structure.plotter import BSDOSPlotter,BSPlotter,BSPlotterProjected,DosPlotter
 
+import io_data
+
 plt.style.use(['science','no-latex'])
 
 
@@ -53,7 +55,7 @@ def plot_ldos(data_file:str, atoms:list, title:str, save_file:str):
     # pos_plt_ldos.show(xlim=(-20,10),ylim=(0,0.3))
     pos_plt_ldos.save_plot(save_file, img_format=u'png', xlim=(-20,10),ylim=(0,0.3),title=title)
     
-def plot_embedded_energy(pos_embedded_energy:list, title:str, save_file:str):
+def plot_embedded_energy_1pos(pos_embedded_energy:list, title:str, save_file:str):
     """
     plot pos1, pos2, pos3 embedded energy
     :param pos_embedded_energy: [pos1_embedded_energy, pos2_embedded_energy, pos3_embedded_energy]
@@ -72,7 +74,7 @@ def plot_embedded_energy(pos_embedded_energy:list, title:str, save_file:str):
     fig_pos_bar.show()
     fig_pos_bar.savefig(save_file)
     
-def plot_one_neb_barrier(neb_dist:list, neb_energy:list, label:str, title:str, save_file:str):
+def plot_neb_barrier_1neb(neb_dist:list, neb_energy:list, label:str, title:str, save_file:str):
     """
     plot one neb barrier
     :param neb_dist: [0.0, 2.946125, 5.899253, ... 37.756896]
@@ -96,7 +98,7 @@ def plot_one_neb_barrier(neb_dist:list, neb_energy:list, label:str, title:str, s
     neb_fig.show()
     neb_fig.savefig(save_file)
     
-def plot_3dir_neb_barrier(all_neb_dist:list, all_neb_energy:list, all_label:list, title:str, save_file:str):
+def plot_neb_barrier_3dir(all_neb_dist:list, all_neb_energy:list, all_label:list, title:str, save_file:str,xlim=(-5,50),ylim=(-0.1,0.6)):
     """
     plot one neb barrier
     :param all_neb_dist: [neb1_dist, neb2_dist, neb3_dist]
@@ -105,17 +107,194 @@ def plot_3dir_neb_barrier(all_neb_dist:list, all_neb_energy:list, all_label:list
     :param title: 'Li+@MASnCl3 NEB barrier'
     :param save_file: './images/111-all-barrier.png'
     """
-    neb_fig = plt.figure(dpi=120)
+    neb_fig = plt.figure(figsize=(8,4))
     neb_ax = plt.axes()
-    for i in range(3):
+    for i in range(len(all_neb_dist)):
         x_dist = np.array(all_neb_dist[i])
         y_energy = np.array(all_neb_energy[i])
         x_line = np.linspace(x_dist.min(), x_dist.max(), 1000)
         y_line = make_interp_spline(x_dist, y_energy)(x_line)
         neb_ax.scatter(x_dist, y_energy, label=all_label[i])
         neb_ax.plot(x_line, y_line)
-    neb_ax.set(xlabel='dist/A', ylabel='energy/eV', title='Li+@MASnBr3 NEB barrier')
+    neb_ax.set(xlim=(-5,50),ylim=(-0.1,0.6),xlabel='dist/A', ylabel='energy/eV', title=title)
 
+    neb_ax.legend()
+    neb_fig.show()
+    neb_fig.savefig(save_file)
+    
+def plot_neb_barrier_4sys(all_neb_dist:list, all_neb_energy:list, all_label:list, title:str, save_file:str,xlim=(-5,70),ylim=(-0.1,0.6)):
+    """
+    plot one neb barrier
+    :param all_neb_dist: [data_111_neb1['dist'],data_112_neb1['dist'],data_113_neb1['dist'],data_123_neb1['dist']]
+    :param all_neb_energy: [data_111_neb1['energy'],data_112_neb1['energy'],data_113_neb1['energy'],data_123_neb1['energy']]
+    :param all_label: ['MASnCl3','MASnBr3','MASnI3','MAPbI3']
+    :param title: Li+@MABX3(B=Sn,Pb;X=Cl,Br,I) NEB121 barrier'
+    :param save_file: './images/contrast-E-neb121-barrier.png'
+    """
+    neb_fig = plt.figure(figsize=(8,4))
+    neb_ax = plt.axes()
+    for i in range(len(all_label)):
+        x_dist = np.array(all_neb_dist[i])
+        y_energy = np.array(all_neb_energy[i])
+        x_line = np.linspace(x_dist.min(), x_dist.max(), 1000)
+        y_line = make_interp_spline(x_dist, y_energy)(x_line)
+        neb_ax.scatter(x_dist, y_energy, label=all_label[i])
+        neb_ax.plot(x_line, y_line)
+    neb_ax.set(xlim=xlim,ylim=ylim,xlabel='dist/A', ylabel='energy/eV', title=title)
+
+    neb_ax.legend()
+    neb_fig.show()
+    neb_fig.savefig(save_file)
+
+    
+def plot_H_bcp_1pos(data_file:str,title:str,save_file:str):
+    """
+    plot H_bcp bar of 8 MA with CH and NH
+    :param datafile: './data/111-11-pos1-E403/H_bcp_data.npz'
+    :param title: 'Li@MASnCl3-pos1-MA-H_bond-bcp'
+    :param savefile: './images/111-11-E403-H-bcp.png'
+    """
+
+    bcp_data = np.load(data_file,allow_pickle=True)
+    H_bcp = bcp_data['sum'].item()
+
+    # print('CH-6',H_bcp['CH6'])
+    # print('NH-6',H_bcp['NH6'])
+    # print('MA-6',H_bcp['MA6'])
+    # print('CH-4',H_bcp['CH4'])
+    # print('NH-4',H_bcp['NH4'])
+    # print('MA-4',H_bcp['MA4'])
+    # print('sum of MA', sum(map(lambda x: H_bcp[x], ['MA1','MA2','MA3','MA4','MA5','MA6','MA7','MA8'])))
+
+    MA_num = ["MA1", "MA2", "MA3", "MA4", "MA5", "MA6", "MA7", "MA8"]
+    CH_H_bcp = list(map(lambda x: H_bcp[x], ['CH1','CH2','CH3','CH4','CH5','CH6','CH7','CH8']))
+    NH_H_bcp = list(map(lambda x: H_bcp[x], ['NH1','NH2','NH3','NH4','NH5','NH6','NH7','NH8']))
+
+    fig, ax = plt.subplots(figsize=(8,4))
+
+    ax.bar(MA_num, CH_H_bcp, label="CH3")
+    ax.bar(MA_num, NH_H_bcp, bottom=CH_H_bcp, label="NH3")
+
+    ax.set(ylim=(0,0.15),xlabel='MA index',ylabel='bcp/a.u.',title=title)
+
+    ax.legend()
+    fig.show()
+    fig.savefig(save_file)
+    
+def plot_neb_H_bcp_1neb(data_dir:str,title:str,save_file:str,smooth_line=False,use_dist=False,ylim=(0,1)):
+    """
+    plot one neb H bcp sum
+    :param data_dir: './data/111-121-neb1'
+    :param title: 'Li+@MASnCl3 NEB121 H bond bcp'
+    :param save_file: './images/111-121-H-bcp-sum.png'
+    :param smooth_line: use smooth line
+    :param use_dist: use dist as x
+    :param ylim: ylim
+    """
+    
+    H_bcp_total = io_data.read_neb_H_bcp(data_dir=data_dir)
+    dist_x, _ = np.array(io_data.read_neb_barrier(data_file=data_dir+'/neb.dat'))
+    image_x = np.array((range(len(dist_x))))
+    bcp_y = H_bcp_total
+    if use_dist:
+        x = dist_x
+    else:
+        x = image_x
+    
+    neb_fig = plt.figure(dpi=120) # figsize=(14,7)
+    neb_ax = plt.axes()
+    if smooth_line:
+        x_line = np.linspace(x.min(), x.max(), 1000)
+        y_line = make_interp_spline(x, bcp_y)(x_line)
+
+        neb_ax.scatter(x, bcp_y, c='k', label='total')
+        neb_ax.plot(x_line, y_line, c='k')
+
+    else:
+        neb_ax.plot(x, bcp_y, '-o', linewidth=2, label='total')
+
+    neb_ax.set(ylim=ylim,xlabel='images', ylabel='bcp/a.u.', title=title)
+    
+    neb_ax.legend()
+    neb_fig.show()
+    neb_fig.savefig(save_file)
+    
+def plot_neb_Li_bcp_1neb(data_dir:str,title:str,save_file:str,smooth_line=False,use_dist=False,ylim=(0,0.1)):
+    """
+    plot one neb H bcp sum
+    :param data_dir: './data/111-121-neb1'
+    :param title: 'Li+@MASnCl3 NEB121 Li bond bcp'
+    :param save_file: './images/111-121-Li-bcp-sum.png'
+    :param smooth_line: use smooth line
+    :param use_dist: use dist as x
+    :param ylim: ylim
+    """
+    
+    Li_bcp_total = io_data.read_neb_Li_bcp(data_dir=data_dir)
+    dist_x, _ = np.array(io_data.read_neb_barrier(data_file=data_dir+'/neb.dat'))
+    image_x = np.array((range(len(dist_x))))
+    bcp_y = Li_bcp_total
+    if use_dist:
+        x = dist_x
+    else:
+        x = image_x
+    
+    neb_fig = plt.figure(dpi=120) # figsize=(14,7)
+    neb_ax = plt.axes()
+    if smooth_line:
+        x_line = np.linspace(x.min(), x.max(), 1000)
+        y_line = make_interp_spline(x, bcp_y)(x_line)
+
+        neb_ax.scatter(x, bcp_y, c='k', label='total')
+        neb_ax.plot(x_line, y_line, c='k')
+
+    else:
+        neb_ax.plot(x, bcp_y, '-o', linewidth=2, label='total')
+
+    neb_ax.set(ylim=ylim,xlabel='images', ylabel='bcp/a.u.', title=title)
+    
+    neb_ax.legend()
+    neb_fig.show()
+    neb_fig.savefig(save_file)
+
+def plot_neb_H_Li_bcp_1neb(data_dir:str,title:str,save_file:str,smooth_line=False,use_dist=False,ylim=(0,1)):
+    """
+    plot one neb H bcp sum
+    :param data_dir: './data/111-121-neb1'
+    :param title: 'Li+@MASnCl3 NEB121 H and Li bond bcp'
+    :param save_file: './images/111-121-H-Li-bcp-sum.png'
+    :param smooth_line: use smooth line
+    :param use_dist: use dist as x
+    :param ylim: ylim
+    """
+    H_bcp_total = np.array(io_data.read_neb_H_bcp(data_dir=data_dir))
+    Li_bcp_total = np.array(io_data.read_neb_Li_bcp(data_dir=data_dir))
+    add_up = H_bcp_total + Li_bcp_total
+    dist_x, _ = np.array(io_data.read_neb_barrier(data_file=data_dir+'/neb.dat'))
+    image_x = np.array((range(len(dist_x))))
+    
+    bcp_y = [H_bcp_total,Li_bcp_total,add_up]
+    if use_dist:
+        x = dist_x
+    else:
+        x = image_x
+    label = ['H bond', 'Li bond', 'add up']
+    
+    neb_fig = plt.figure(dpi=120) # figsize=(14,7)
+    neb_ax = plt.axes()
+    for i in range(len(bcp_y)):
+        if smooth_line:
+            x_line = np.linspace(x.min(), x.max(), 1000)
+            y_line = make_interp_spline(x, bcp_y[i])(x_line)
+
+            neb_ax.scatter(x, bcp_y[i], c='k', label=label[i])
+            neb_ax.plot(x_line, y_line, c='k')
+
+        else:
+            neb_ax.plot(x, bcp_y[i], '-o', linewidth=2, label=label[i])
+
+    neb_ax.set(ylim=ylim,xlabel='images', ylabel='bcp/a.u.', title=title)
+    
     neb_ax.legend()
     neb_fig.show()
     neb_fig.savefig(save_file)

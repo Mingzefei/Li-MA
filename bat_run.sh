@@ -18,8 +18,9 @@ data_path=/mnt/c/Users/Hua/1_workbench/Li-MA/data
 
 # make parallel_dic
 rm ${data_path}/parallel_dir 2>/dev/null # dir
-rm ${data_path}/parallel_out 2>/dev/null # out
-rm ${data_path}/parallel_err 2>/dev/null # err
+rm ${data_path}/parallel_out* 2>/dev/null # out
+rm ${data_path}/parallel_err* 2>/dev/null # err
+rm ${data_path}/WARNNING 2>/dev/null # warnning
 for i in ${data_path}/*
 do
     if [[ ${i} == *"pos"* ]]; then
@@ -51,23 +52,23 @@ done
 
 function run_Li_bond(){
     if [ -f "CHGCAR_sum" ] && [ -f "CONTCAR" ]; then
-        python ${relax_path}/find_Li_bond.py -dist 3 -save Li_bcp_data.npz
+        # python ${relax_path}/find_Li_bond.py -dist 3 -save Li_bcp_data.npz
         python ${relax_path}/AIM_bcp.py -file Li_bcp_data.npz
         python ${relax_path}/select_bcp_dat.py -file Li_bcp_data.npz
         echo ""
     else
-        echo 'WARNNING:`pwd`' >> ${relax_path}/../data/WARNNING
+        echo "WARNNING:`pwd`" >> ${relax_path}/../data/WARNNING
     fi
 }
 
 function run_H_bond(){
     if [ -f "CHGCAR_sum" ] && [ -f "CONTCAR" ]; then
-        python ${relax_path}/find_H_bond.py -dist 3 -save H_bcp_data.npz
+        # python ${relax_path}/find_H_bond.py -dist 3 -save H_bcp_data.npz
         python ${relax_path}/AIM_bcp.py -file H_bcp_data.npz
         python ${relax_path}/select_bcp_dat.py -file H_bcp_data.npz
         echo ""
     else
-        echo 'WARNNING:`pwd`' >> ${relax_path}/../data/WARNNING
+        echo "WARNNING:`pwd`" >> ${relax_path}/../data/WARNNING
     fi
 }
 
@@ -98,11 +99,14 @@ for((i=1; i<=Njob; )); do
 			break;
 		fi
 		if [[ ! "${PID[Ijob]}" ]] || ! kill -0 ${PID[Ijob]} 2> /dev/null; then
-			CMD $i $Ijob >>${data_path}/parallel_out 2>>${data_path}/parallel_err &
+			CMD $i $Ijob >>${data_path}/parallel_out_$Ijob 2>>${data_path}/parallel_err_$Ijob &
 			PID[Ijob]=$!
 			i=$((i+1))
 		fi
 	done
 done
-cd ${data_path}/..
+# out and err
+cd ${data_path}
+cat parallel_out_* > parallel_out
+cat parallel_err_* > parallel_err
 wait
