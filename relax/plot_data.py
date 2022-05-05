@@ -181,7 +181,7 @@ def plot_H_bcp_1pos(data_file:str,title:str,save_file:str):
     fig.show()
     fig.savefig(save_file)
     
-def plot_neb_H_bcp_1neb(data_dir:str,title:str,save_file:str,smooth_line=False,use_dist=False,ylim=(0,1)):
+def plot_neb_H_bcp_1neb(data_dir:str,title:str,save_file:str,smooth_line=False,use_dist=False,ylim='auto'):
     """
     plot one neb H bcp sum
     :param data_dir: './data/111-121-neb1'
@@ -213,7 +213,10 @@ def plot_neb_H_bcp_1neb(data_dir:str,title:str,save_file:str,smooth_line=False,u
     else:
         neb_ax.plot(x, bcp_y, '-o', linewidth=2, label='total')
 
-    neb_ax.set(ylim=ylim,xlabel='images', ylabel='bcp/a.u.', title=title)
+    if ylim == 'auto' or ylim == 'Auto':
+        neb_ax.set(xlabel='images', ylabel='bcp/a.u.', title=title)
+    else:
+        neb_ax.set(ylim=ylim,xlabel='images', ylabel='bcp/a.u.', title=title)
     
     neb_ax.legend()
     neb_fig.show()
