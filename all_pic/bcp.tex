@@ -1,0 +1,182 @@
+\documentclass[UTF8, a4paper, 12pt, fontset=windows]{ctexart}
+
+\usepackage[left=1.5cm, right=1.5cm, top=2cm, bottom=2cm]{geometry}
+\usepackage[landscape]{geometry} % 页面横置
+\usepackage{graphicx,float,subfigure} % 图片插入和固定, 子图
+\usepackage{textcomp,booktabs,multirow} % 表格设置
+\usepackage{amsmath} % 数学排版
+\usepackage{mhchem} % 化学式
+\usepackage{siunitx} % 国际单位制, 主要使用方法\SI{3.14}{eV}和\si[per=frac]{\joule\per\mole}
+\usepackage[hidelinks]{hyperref} % 超链接, 参数隐藏方框
+\usepackage{pdflscape} % 页面横置
+
+\newcommand{\dn}[1]{\mathrm{d}#1}
+\newcommand{\const}{\mathrm{const}}
+\newcommand{\mysize}{0.31\textwidth} % 绘图大小
+
+\begin{document}
+
+
+        % \begin{figure}
+        %     \centering
+        %     \subfigure[121]{
+        %         \begin{minipage}[b]{\mysize}
+        %             \includegraphics[width=\textwidth]{../images/111-121-barrier.png} \\
+        %             \includegraphics[width=\textwidth]{../images/111-121-H-bcp-sum.png} \\
+        %             \includegraphics[width=\textwidth]{../images/111-121-Li-bcp-sum.png} \\
+        %             \includegraphics[width=\textwidth]{../images/111-121-H-Li-bcp-sum.png}
+        %         \end{minipage}
+        %     }
+        %     \subfigure[131]{
+        %         \begin{minipage}[b]{\mysize}
+        %             \includegraphics[width=\textwidth]{../images/111-131-barrier.png} \\
+        %             \includegraphics[width=\textwidth]{../images/111-131-H-bcp-sum.png} \\ 
+        %             \includegraphics[width=\textwidth]{../images/111-131-Li-bcp-sum.png} \\
+        %             \includegraphics[width=\textwidth]{../images/111-131-H-Li-bcp-sum.png}
+        %         \end{minipage}
+        %     }
+        %     \subfigure[212]{
+        %         \begin{minipage}[b]{\mysize}
+        %             \includegraphics[width=\textwidth]{../images/111-212-barrier.png} \\ 
+        %             \includegraphics[width=\textwidth]{../images/111-212-H-bcp-sum.png} \\ 
+        %             \includegraphics[width=\textwidth]{../images/111-212-Li-bcp-sum.png} \\ 
+        %             \includegraphics[width=\textwidth]{../images/111-212-H-Li-bcp-sum.png}
+        %         \end{minipage}
+        %     }
+        %     \caption{\ce{MASnCl3} NEB}
+        % \end{figure}
+
+
+        % \begin{figure}
+        %     \centering
+        %     \subfigure[121]{
+        %         \begin{minipage}[b]{\mysize}
+        %             \includegraphics[width=\textwidth]{../images/112-121-barrier.png} \\
+        %             \includegraphics[width=\textwidth]{../images/112-121-H-bcp-sum.png} \\
+        %             \includegraphics[width=\textwidth]{../images/112-121-Li-bcp-sum.png} \\
+        %             \includegraphics[width=\textwidth]{../images/112-121-H-Li-bcp-sum.png}
+        %         \end{minipage}
+        %     }
+        %     \subfigure[131]{
+        %         \begin{minipage}[b]{\mysize}
+        %             \includegraphics[width=\textwidth]{../images/112-131-barrier.png} \\
+        %             \includegraphics[width=\textwidth]{../images/112-131-H-bcp-sum.png} \\ 
+        %             \includegraphics[width=\textwidth]{../images/112-131-Li-bcp-sum.png} \\
+        %             \includegraphics[width=\textwidth]{../images/112-131-H-Li-bcp-sum.png}
+        %         \end{minipage}
+        %     }
+        %     \subfigure[212]{
+        %         \begin{minipage}[b]{\mysize}
+        %             \includegraphics[width=\textwidth]{../images/112-212-barrier.png} \\ 
+        %             \includegraphics[width=\textwidth]{../images/112-212-H-bcp-sum.png} \\ 
+        %             \includegraphics[width=\textwidth]{../images/112-212-Li-bcp-sum.png} \\ 
+        %             \includegraphics[width=\textwidth]{../images/112-212-H-Li-bcp-sum.png}
+        %         \end{minipage}
+        %     }
+        %     \caption{\ce{MASnBr3} NEB}
+        % \end{figure}
+
+        % \begin{figure}
+        %     \centering
+        %     \subfigure[121]{
+        %         \begin{minipage}[b]{\mysize}
+        %             \includegraphics[width=\textwidth]{../images/113-121-barrier.png} \\
+        %             \includegraphics[width=\textwidth]{../images/113-121-H-bcp-sum.png} \\
+        %             \includegraphics[width=\textwidth]{../images/113-121-Li-bcp-sum.png} \\
+        %             \includegraphics[width=\textwidth]{../images/113-121-H-Li-bcp-sum.png}
+        %         \end{minipage}
+        %     }
+        %     \subfigure[131]{
+        %         \begin{minipage}[b]{\mysize}
+        %             \includegraphics[width=\textwidth]{../images/113-131-barrier.png} \\
+        %             \includegraphics[width=\textwidth]{../images/113-131-H-bcp-sum.png} \\ 
+        %             \includegraphics[width=\textwidth]{../images/113-131-Li-bcp-sum.png} \\
+        %             \includegraphics[width=\textwidth]{../images/113-131-H-Li-bcp-sum.png}
+        %         \end{minipage}
+        %     }
+        %     \subfigure[212]{
+        %         \begin{minipage}[b]{\mysize}
+        %             \includegraphics[width=\textwidth]{../images/113-212-barrier.png} \\ 
+        %             \includegraphics[width=\textwidth]{../images/113-212-H-bcp-sum.png} \\ 
+        %             \includegraphics[width=\textwidth]{../images/113-212-Li-bcp-sum.png} \\ 
+        %             \includegraphics[width=\textwidth]{../images/113-212-H-Li-bcp-sum.png}
+        %         \end{minipage}
+        %     }
+        %     \caption{\ce{MASnI3} NEB}
+        % \end{figure}
+        
+        % \begin{figure}
+        %     \centering
+        %     \subfigure[121]{
+        %         \begin{minipage}[b]{\mysize}
+        %             \includegraphics[width=\textwidth]{../images/123-121-barrier.png} \\
+        %             \includegraphics[width=\textwidth]{../images/123-121-H-bcp-sum.png} \\
+        %             \includegraphics[width=\textwidth]{../images/123-121-Li-bcp-sum.png} \\
+        %             \includegraphics[width=\textwidth]{../images/123-121-H-Li-bcp-sum.png}
+        %         \end{minipage}
+        %     }
+        %     \subfigure[131]{
+        %         \begin{minipage}[b]{\mysize}
+        %             \includegraphics[width=\textwidth]{../images/123-131-barrier.png} \\
+        %             \includegraphics[width=\textwidth]{../images/123-131-H-bcp-sum.png} \\ 
+        %             \includegraphics[width=\textwidth]{../images/123-131-Li-bcp-sum.png} \\
+        %             \includegraphics[width=\textwidth]{../images/123-131-H-Li-bcp-sum.png}
+        %         \end{minipage}
+        %     }
+        %     \subfigure[212]{
+        %         \begin{minipage}[b]{\mysize}
+        %             \includegraphics[width=\textwidth]{../images/123-212-barrier.png} \\ 
+        %             \includegraphics[width=\textwidth]{../images/123-212-H-bcp-sum.png} \\ 
+        %             \includegraphics[width=\textwidth]{../images/123-212-Li-bcp-sum.png} \\ 
+        %             \includegraphics[width=\textwidth]{../images/123-212-H-Li-bcp-sum.png}
+        %         \end{minipage}
+        %     }
+        %     \caption{\ce{MAPbBr3} NEB}
+        % \end{figure}
+
+        \newpage
+        
+
+
+        % \begin{landscape}
+        %     \begin{table}[]
+        %         \begin{tabular}{llllllll|llll}
+        %         \hline
+        %                                         & \multicolumn{7}{c|}{（整体）价数}                            & \multicolumn{4}{c}{bcp电子密度}                  \\ \cline{2-12} 
+        %                                         & Li    & H14   & C6    & 甲基6   & 胺基6   & 甲胺离子6 & Cl6    & H14-Li & 甲基6-Cl 累加 & 胺基6-Cl 累加 & 甲胺离子6-Cl 累加 \\ \hline
+        %         \multicolumn{1}{l|}{理想MASnCl3}        &       & 0.073 & 0.198 & 0.482 & 0.327 & 0.808 & -0.705 &        & 0.01358   & 0.06165   & 0.07523     \\
+        %         \multicolumn{1}{l|}{Li+@MASCl3-稳态1}   & 0.901 & 0.082 & 0.186 & 0.439 & 0.341 & 0.78  & -0.724 & 0.0036 & 0.0079    & 0.0856    & 0.0935      \\
+        %         \multicolumn{1}{l|}{无Li@MASCl3-稳态1}   &       & 0.108 & 0.201 & 0.471 & 0.317 & 0.788 & -0.683 &        & 0.008     & 0.0856    & 0.0936      \\
+        %         \multicolumn{1}{l|}{Li+@MASCl3-过渡态03} & 0.894 & 0.077 & 0.137 & 0.453 & 0.335 & 0.788 & -0.73  & 0.0042 & 0.026     & 0.0714    & 0.0975      \\
+        %         \multicolumn{1}{l|}{无Li@MASCl3-过渡态03} &       & 0.099 & 0.193 & 0.484 & 0.318 & 0.802 & -0.694 &        & 0.024     & 0.0713    & 0.0952      \\ \hline
+        %         \end{tabular}
+        %     \end{table}
+        % \end{landscape}
+
+        \begin{landscape}
+            % Please add the following required packages to your document preamble:
+            % \usepackage{multirow}
+            \begin{table}[h]
+                \centering
+                \begin{tabular}{ccccccc}
+                \hline
+                                        &             & 理想 & Li+嵌入-稳态1 & 无Li-稳态1 & Li+嵌入-过渡态03 & 无Li-过渡态03 \\ \hline
+                \multirow{7}{*}{（整体）价数}  & Li          &           & 0.901          &                & 0.894            &                  \\
+                                        & H14         & 0.073     & 0.082          & 0.108          & 0.077            & 0.099            \\
+                                        & C6          & 0.198     & 0.186          & 0.201          & 0.137            & 0.193            \\
+                                        & 甲基6         & 0.482     & 0.439          & 0.471          & 0.453            & 0.484            \\
+                                        & 胺基6         & 0.327     & 0.341          & 0.317          & 0.335            & 0.318            \\
+                                        & 甲胺离子6       & 0.808     & 0.780           & 0.788          & 0.788            & 0.802            \\
+                                        & Cl6         & -0.705    & -0.724         & -0.683         & -0.730            & -0.694           \\ \hline
+                \multirow{4}{*}{bcp电子密度} & H14-Li      &           & 0.0036         &                & 0.0042           &                  \\
+                                        & 甲基6-Cl 累加   & 0.01358   & 0.0079         & 0.008          & 0.026            & 0.024            \\
+                                        & 胺基6-Cl 累加   & 0.06165   & 0.0856         & 0.0856         & 0.0714           & 0.0713           \\
+                                        & 甲胺离子6-Cl 累加 & 0.07523   & 0.0935         & 0.0936         & 0.0975           & 0.0952           \\ \hline
+                \end{tabular}
+                \caption{MASnCl3的bader化合价和bcp电子密度}
+                \end{table}
+        \end{landscape}
+
+
+
+\end{document}

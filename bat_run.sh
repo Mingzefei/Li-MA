@@ -52,7 +52,7 @@ done
 
 function run_Li_bond(){
     if [ -f "CHGCAR_sum" ] && [ -f "CONTCAR" ]; then
-        # python ${relax_path}/find_Li_bond.py -dist 3 -save Li_bcp_data.npz
+        python ${relax_path}/find_Li_bond.py -dist 3.1 -save Li_bcp_data.npz
         python ${relax_path}/AIM_bcp.py -file Li_bcp_data.npz
         python ${relax_path}/select_bcp_dat.py -file Li_bcp_data.npz
         echo ""
@@ -63,7 +63,7 @@ function run_Li_bond(){
 
 function run_H_bond(){
     if [ -f "CHGCAR_sum" ] && [ -f "CONTCAR" ]; then
-        # python ${relax_path}/find_H_bond.py -dist 3 -save H_bcp_data.npz
+        python ${relax_path}/find_H_bond.py -dist 3.1 -save H_bcp_data.npz
         python ${relax_path}/AIM_bcp.py -file H_bcp_data.npz
         python ${relax_path}/select_bcp_dat.py -file H_bcp_data.npz
         echo ""
@@ -80,10 +80,13 @@ function CMD {
     cd ${job_path}
     pwd
     if  [[ ${job_path} == *ideal* ]]; then
-        run_H_bond
+        mv d3_H_bcp_data.npz H_bcp_data.npz # save dist = 3.1
+        # run_H_bond
     else
-        run_H_bond
-        run_Li_bond
+        mv d3_H_bcp_data.npz H_bcp_data.npz # save dist = 3.1
+        mv d3_Li_bcp_data.npz Li_bcp_data.npz # save dist = 3.1
+        # run_H_bond
+        # run_Li_bond
     fi
 	echo "Job $1 Ijob $2 end"
 }
@@ -102,11 +105,14 @@ for((i=1; i<=Njob; )); do
 			CMD $i $Ijob >>${data_path}/parallel_out_$Ijob 2>>${data_path}/parallel_err_$Ijob &
 			PID[Ijob]=$!
 			i=$((i+1))
+
+            printf "\rNjob(%d)/Nproc(%d): %d/%d " $Njob $Nproc $i $Ijob
 		fi
 	done
 done
+
+wait
 # out and err
 cd ${data_path}
 cat parallel_out_* > parallel_out
 cat parallel_err_* > parallel_err
-wait

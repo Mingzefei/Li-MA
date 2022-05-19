@@ -175,7 +175,8 @@ def plot_H_bcp_1pos(data_file:str,title:str,save_file:str):
     ax.bar(MA_num, CH_H_bcp, label="CH3")
     ax.bar(MA_num, NH_H_bcp, bottom=CH_H_bcp, label="NH3")
 
-    ax.set(ylim=(0,0.15),xlabel='MA index',ylabel='bcp/a.u.',title=title)
+    # ax.set(ylim=(0,0.15),xlabel='MA index',ylabel='bcp/a.u.',title=title)
+    ax.set(ylim=(0,0.15),xlabel='MA index',ylabel='bcp/a.u.',title=title+'(total: '+str(H_bcp['total'])[0:6]+' a.u.)')
 
     ax.legend()
     fig.show()
@@ -198,8 +199,10 @@ def plot_neb_H_bcp_1neb(data_dir:str,title:str,save_file:str,smooth_line=False,u
     bcp_y = H_bcp_total
     if use_dist:
         x = dist_x
+        xlabel = 'dist/A'
     else:
         x = image_x
+        xlabel = 'images'
     
     neb_fig = plt.figure(dpi=120) # figsize=(14,7)
     neb_ax = plt.axes()
@@ -207,14 +210,14 @@ def plot_neb_H_bcp_1neb(data_dir:str,title:str,save_file:str,smooth_line=False,u
         x_line = np.linspace(x.min(), x.max(), 1000)
         y_line = make_interp_spline(x, bcp_y)(x_line)
 
-        neb_ax.scatter(x, bcp_y, c='k', label='total')
+        neb_ax.scatter(x, bcp_y, c='k', label='H bond total')
         neb_ax.plot(x_line, y_line, c='k')
 
     else:
-        neb_ax.plot(x, bcp_y, '-o', linewidth=2, label='total')
+        neb_ax.plot(x, bcp_y, '-o', linewidth=2, label='H bond total')
 
     if ylim == 'auto' or ylim == 'Auto':
-        neb_ax.set(xlabel='images', ylabel='bcp/a.u.', title=title)
+        neb_ax.set(xlabel=xlabel, ylabel='bcp/a.u.', title=title)
     else:
         neb_ax.set(ylim=ylim,xlabel='images', ylabel='bcp/a.u.', title=title)
     
@@ -222,7 +225,7 @@ def plot_neb_H_bcp_1neb(data_dir:str,title:str,save_file:str,smooth_line=False,u
     neb_fig.show()
     neb_fig.savefig(save_file)
     
-def plot_neb_Li_bcp_1neb(data_dir:str,title:str,save_file:str,smooth_line=False,use_dist=False,ylim=(0,0.1)):
+def plot_neb_Li_bcp_1neb(data_dir:str,title:str,save_file:str,smooth_line=False,use_dist=False,ylim='auto'):
     """
     plot one neb H bcp sum
     :param data_dir: './data/111-121-neb1'
@@ -239,8 +242,10 @@ def plot_neb_Li_bcp_1neb(data_dir:str,title:str,save_file:str,smooth_line=False,
     bcp_y = Li_bcp_total
     if use_dist:
         x = dist_x
+        xlabel = 'dist/A'
     else:
         x = image_x
+        xlabel = 'images'
     
     neb_fig = plt.figure(dpi=120) # figsize=(14,7)
     neb_ax = plt.axes()
@@ -248,13 +253,16 @@ def plot_neb_Li_bcp_1neb(data_dir:str,title:str,save_file:str,smooth_line=False,
         x_line = np.linspace(x.min(), x.max(), 1000)
         y_line = make_interp_spline(x, bcp_y)(x_line)
 
-        neb_ax.scatter(x, bcp_y, c='k', label='total')
+        neb_ax.scatter(x, bcp_y, c='k', label='Li bond total')
         neb_ax.plot(x_line, y_line, c='k')
 
     else:
-        neb_ax.plot(x, bcp_y, '-o', linewidth=2, label='total')
+        neb_ax.plot(x, bcp_y, '-o', linewidth=2, label='Li bond total')
 
-    neb_ax.set(ylim=ylim,xlabel='images', ylabel='bcp/a.u.', title=title)
+    if ylim == 'auto' or ylim == 'Auto':
+        neb_ax.set(xlabel=xlabel, ylabel='bcp/a.u.', title=title)
+    else:
+        neb_ax.set(ylim=ylim,xlabel='images', ylabel='bcp/a.u.', title=title)
     
     neb_ax.legend()
     neb_fig.show()
@@ -273,14 +281,16 @@ def plot_neb_H_Li_bcp_1neb(data_dir:str,title:str,save_file:str,smooth_line=Fals
     H_bcp_total = np.array(io_data.read_neb_H_bcp(data_dir=data_dir))
     Li_bcp_total = np.array(io_data.read_neb_Li_bcp(data_dir=data_dir))
     add_up = H_bcp_total + Li_bcp_total
-    dist_x, _ = np.array(io_data.read_neb_barrier(data_file=data_dir+'/neb.dat'))
+    dist_x, energy_y = np.array(io_data.read_neb_barrier(data_file=data_dir+'/neb.dat'))
     image_x = np.array((range(len(dist_x))))
     
     bcp_y = [H_bcp_total,Li_bcp_total,add_up]
     if use_dist:
         x = dist_x
+        xlabel = 'dist/A'
     else:
         x = image_x
+        xlabel = 'images'
     label = ['H bond', 'Li bond', 'add up']
     
     neb_fig = plt.figure(dpi=120) # figsize=(14,7)
@@ -296,11 +306,13 @@ def plot_neb_H_Li_bcp_1neb(data_dir:str,title:str,save_file:str,smooth_line=Fals
         else:
             neb_ax.plot(x, bcp_y[i], '-o', linewidth=2, label=label[i])
 
-    neb_ax.set(ylim=ylim,xlabel='images', ylabel='bcp/a.u.', title=title)
+    neb_ax.set(ylim=ylim,xlabel=xlabel, ylabel='bcp/a.u.', title=title)
     
     neb_ax.legend()
     neb_fig.show()
     neb_fig.savefig(save_file)
+    
+
 
 def main():
     
