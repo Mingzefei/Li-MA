@@ -18,15 +18,26 @@ def kcalmol2ev(energy_kcalmol:float):
     e = C.constants.e
     return energy_kcalmol * 1000 * cal2j / (e * NA)
 
+def bcpchg2kcalmol(bcpchg:float):
+    return -223.08 * bcpchg + 0.7423
+    # return -332.34 * bcpchg - 1.0661
+
 def main():
     from sys import argv, exit
     
     def help_print():
         print('usage    :python kcalmol2ev.py energy(in kcal per mol)')
+        print('         :python kcalmol2ev.py -bcp chg(in a.u.)')
         
     if '-h' in argv:
         help_print()
         exit(0)
+    elif '-bcp' in argv:
+        argv.remove('-bcp')
+        for bcpchg in argv[1:]:
+            bcpchg = float(bcpchg)
+            energy = bcpchg2kcalmol(bcpchg)
+            print('%.4f' % kcalmol2ev(energy))
     elif len(argv) >= 2:
         for energy in argv[1:]:
             energy = float(energy)
