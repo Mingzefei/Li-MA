@@ -1,82 +1,176 @@
 % !Mode:: "TeX:UTF-8"
-\chapter{简介}
+\chapter{绪论}
+\section{锂金属电极保护膜及离子输运}
 
-\section{项目说明}
+锂离子电池凭借自身容量大，工作电压高，以及循环寿命长等优点，成为最常用的电化学储能设备之一。
+然而，锂金属电极的应用一直面临诸多挑战，例如，充放电循环中体积膨胀，锂金属与电解液之间界面反应复杂，电沉积过程中负极表面枝状晶体生长难以控制，甚至存在“死锂”(图\ref{fig:Li-anode}a)等\upcite{huaApplicationComputationalSimulation2020}。
+这些都严重影响了锂金属负极的安全稳定和高效。
 
-欢迎使用北京航空航天大学毕业设计论文毕业设计论文\LaTeX{}模板，
-本模板由北航开源俱乐部(BHOSC)维护，根据北京航空航天大学教务处的
-本科生毕业设计论文要求和研究生毕业设计论文要求来编写的。
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{Li-andoe.jpg}
+    \caption{(a)锂金属电极在充放电过程中产生锂枝晶和死锂；(b)抑制锂枝晶的方法}
+    \label{fig:Li-anode}
+\end{figure}
 
-目前本模板支持本科、硕士和博士研究生毕业设计论文要求规范。
+目前，人们从实验上证明，设计合适的保护层是解决上述问题的有效手段之一。已开发的保护层包括聚合物型、无机型，以及合金型等，从不同方向出发抑制锂枝晶的形成和生长。
+例如， Lopez等人\upcite{lopezEffectsPolymerCoatings2018}对聚合物型保护层进行分析和比较，发现该类保护层的机械性能影响锂离子沉积的宏观均匀性，而其化学性质影响沉积的局部形态。
+Liu等人\upcite{liuMixedLithiumIon2020}通过硫化硒与锂金属的气固反应制得\ce{Li2S/Li2Se}保护层，使得\ce{LiFePO4}、\ce{S/C}及\ce{LiNi_{0.6}Co_{0.2}Mn_{0.2}O2}全电池在电池循环性能上均有所提升。其中，\ce{Li2Se}较\ce{Li2S}的锂离子迁移能垒更低，表现出更好的离子导电率，在一定程度上抑制了锂枝晶的形成。
+Guo等人\upcite{guoDendritefreeLithiumDeposition2020}根据\ce{Ag}和\ce{Au}的良好亲锂性，通过反应在电极表面形成亲锂的合金层，降低了锂离子成核势垒，从而实现锂的均匀沉积。
 
-本模板在编写过程中尽可能满足学校要求，但是由于原始规范主要针对Word。
-和\LaTeX{}之间不可避免的差异加之编写者的水平限制，本模板很难做到完全一致。
-我们十分欢迎北航的\LaTeX{}爱好者/专家参与到本模板的完善工作中，
-希望本模板能够对各位同学的论文撰写工作提供便利，
-感谢您对我们工作的信任以及任何可能的反馈和贡献。
-如果您对开发和完善本模板\,BUAAthesis.cls\,有兴趣，
-或者有任何想法和建议，请与我们联系！
+保护层对锂金属电极的保护作用主要包括两方面：隔绝活泼的锂金属和电解液，减少两者之间复杂的界面反应，从而提高电池效率；调控锂离子的迁移和沉积过程，抑制锂枝晶的生长，从而提高电池安全性\upcite{huaApplicationComputationalSimulation2020}。
+因此，为有针对性地设计新型高效保护膜，锂离子在不同类型保护膜中的输运行为引起了人们的注意。
+Wei等人\upcite{weiKineticsTuningLiIon2015}通过理论计算和实验相结合，阐明了\ce{LiNi_{x}Mn_{y}Co_{z}O2}（$x+y+z=1$）材料中调节锂离子扩散动力学的方法。随着材料体系含锂量的不同，存在两种不同的迁移方式。
+Dathar等人\upcite{datharCalculationsLiIonDiffusion2011}较为系统地研究了橄榄石磷酸盐\ce{FePO4}和\ce{LiFePO4}中的锂离子扩散动力学，通过考虑块体、表面、缺陷等因素影响，解释了前人理论计算和实验测量间的数值差距。
+Yang等人\upcite{yangLiIonDiffusion2011}从实验表征和理论计算上对橄榄石磷酸盐\ce{LiFePO4}中锂离子迁移机理进行研究，发现其中包括两个过程：锂离子在\ce{PO4}基团相邻\ce{Li}位点之间跳跃；\ce{Fe}离子协同运动，进而形成反位缺陷，促进锂离子扩散。
+Iddir等人\upcite{iddirLiIonDiffusion2010}对单斜\ce{Li2CO3}中锂离子迁移进行计算模拟，发现锂离子沿\ce{Li2CO3}开放通道的能垒（\SI{0.28} {eV}）远低于跨平面方向能垒（\SI{0.60}{eV}），该过程中 \ce{Li+} 与\ce{O}依次发生断键和成键。
+在近期的研究中Yao等人\upcite{yinMetalChloridePerovskite2020}将光电材料有机金属卤化物钙钛矿用作锂金属电极保护膜，实验结果证明了其有效性。而有机金属卤化物钙钛矿为锂离子提供了新型的输运环境，其中存在的复杂作用关系，可能启发人们设计新型保护膜。
 
-{\heiti 注意：}本模板在尽可能满足学校要求的同时，在细节处理上，
-倾向于遵从\LaTeX{}排版规范，避免使用奇怪的宏包和编写者认为不规范的设置。
-所以难免和学校提供的基于Word的样张存在细微差异，请谨慎使用！
+综上，为开发更有效的锂金属电极保护膜，提高锂电极性能，人们已经对 \ce{Li2CO3} 、\ce{LiFePO4} 等锂电池体系材料的锂离子输运行为进行多方面的研究，并发现其中的机理受环境、缺陷等因素影响，该过程中锂离子与相关原子的成键断键或协同运动都会显著影响迁移能垒。
 
-\section{相关信息}
+\section{有机金属卤化物钙钛矿}
 
-\subsection{模板维护及联系方式}
-\begin{tabular}{ll}
-    \multicolumn{2}{l}{北航开源俱乐部 BeiHang OpenSource Club (BHOSC)} \\
-    GoogleGroup & \url{https://groups.google.com/d/forum/BHOSC/} \\
-    Github      & \url{https://github.com/BHOSC/} \\
-    IRC         & \#beihang-osc @ FreeNode
-\end{tabular}
+有机金属卤化物钙钛矿因其能带结构合适、光电转化效率高等优点，被用于研发高效太阳能电池\upcite{liRecentProgressOrganohalide2015}。
+当前，对于有机金属卤化物钙钛矿的晶体结构、能带结构等方面，人们已有较全面的研究。
 
-\subsection{代码托管及相关页面}
-\begin{itemize}
-    \item 毕业设计论文模板代码
-    \item[] \url{https://github.com/BHOSC/BUAAthesis/}
-    % TODO(huxuan): Others pages related to BUAAthesis
-    % \item 软件学院本科毕设答辩演示模板
-    % \item[] \url{https://github.com/huxuan/latex\_buaasoft\_bachelor\_slide}
-    % \item 研究生毕设综述报告和开题报告模板
-    % \item[] \url{https://github.com/JosephPeng/ZongshuKaiti\}
-\end{itemize}
+钙钛矿的基本结构如图\ref{fig:perovskite}所示\footnote{图片来源于网络}，由B位金属离子和X位卤素原子形成无机框架，A位阳离子填充其中。
 
-\subsection{贡献者}
-\begin{tabularx}{\textwidth}{@{\hspace{2em}}ll}
-    \href{https://github.com/JosephPeng/}{Joseph \footnote{目前的维护者}} &
-    \href{mailto:pengyongbuaa@gmail.com}{pengyongbuaa@gmail.com} \\
-    \href{http://huxuan.org/}{huxuan \textsuperscript{1}} &
-    \href{mailto:i@huxuan.org}{i@huxuan.org} \\
-\end{tabularx}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{perovskite.png}
+    \caption{有机金属卤化物钙钛矿的结构示意图}
+    \label{fig:perovskite}
+\end{figure}
 
-\subsection{项目协议}
-本项目主要遵从以下两套协议
-\begin{itemize}
-    \item \href{http://www.gnu.org/licenses/gpl.txt}
-        {GNU General Public License (GPLv3)}
-    \item \href{http://www.latex-project.org/lppl.txt}
-        {\LaTeX{} Project Public License (LPPL)}
-\end{itemize}
-使用前请认真阅读相关协议，详情请见项目代码根目录下的 LICENSE 文件
+有机金属卤化物钙钛矿的晶格类型受温度影响很大。
+以 \ce{CH3NH3PbI3}（结构如图\ref{fig:temp-struc}所示）为例，温度变化时，晶格中的\ce{PbI3}八面体会发生旋转和倾斜，从而产生不同的相：低温时为正交相；温度高于约 \SI{162}{K} 时为四方相；温度高于约 \SI{330}{K} 时为立方相\upcite{liRecentProgressOrganohalide2015}。
 
-\section{免责声明}
-本模板为编写者依据北京航空航天大学研究生院及教务处出台的
-《北京航空航天大学研究生撰写学位论文规定（2009年7月修订）》和
-《本科生毕业设计（论文）撰写规范及要求》编写而成，
-旨在方便北京航空航天大学毕业生撰写学位论文使用。
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{temp-struc.png}
+    \caption{\ce{CH3NH3PbI3}在不同温度下的晶体结构示意图。(a) 正交相；(b) 四方相；(c) 立方相。图中黑色大球为\ce{Pb}原子，灰色大球为 \ce{I} 原子，灰色和 浅灰色小球分别为有机分子中的\ce{N}和 \ce{C}原子，白色小球为\ce{H}原子\upcite{liRecentProgressOrganohalide2015}}
+    \label{fig:temp-struc}
+\end{figure}
 
-如前所述，本模板为北航开源俱乐部\LaTeX{}爱好者依据学校的要求规范编写，
-研究生院及教务处只提供毕业论文的写作规范，目前并未提供官方\LaTeX{}模板，
-也未授权第三方模板为官方模板，故此模板仅为论文规范的参考实现，
-不保证格式能完全满足审查老师要求。任何由于使用本模板而引起的论文格式等问题，
-以及造成的可能后果，均与本模板编写者无关。
+对于A位有机阳离子，如\ce{MA}（\ce{CH3NH3}，甲胺），通常存在取向。
+Brivio等人\upcite{brivioStructuralElectronicProperties2013}对\ce{MA}的不同取向进行研究，认为$<100>$、$<110>$和$<111>$三种取向中以$<100>$取向热力学最稳定；而Giorgi\upcite{giorgiSmallPhotocarrierEffective2013}等人认为$<111>$最稳定。
+实验上，Wasylishen等人\upcite{wasylishenCationRotationMethylammonium1985}通过光谱测量发现室温下\ce{MA}有机阳离子存在快速旋转；而Frost等人\upcite{frostAtomisticOriginsHighPerformance2014}计算发现立方相\ce{APbI3}(\ce{A}=\ce{NH4}，\ce{CH3NH3}，\ce{CF3NH3}和\ce{NH2CHNH2})中有机分子的旋转势垒分别为 \SI{0.3}{kJ \per \mole}， \SI{1.3}{kJ \per \mole}，  \SI{21.4}{kJ \per\mole} 和 \SI{13.9}{kJ \per \mole}，受极性和尺寸影响。
 
-任何组织或个人以本模板为基础进行修改、扩展而生成新模板，请严格遵守相关协议。
-由于违反协议而引起的任何纠纷争端均与本模板编写者无关。
+通过调整B位金属阳离子和X位卤族元素，可以实现对带隙、晶格尺寸和稳定性的调控\upcite{liRecentProgressOrganohalide2015}。
 
-\section{版本历史}
-\begin{itemize}
-    \item[1.0] 2012/07/24 已完成大体功能，说明文档和细节方面还有待完善。
-    % “a.b”为版本号，b为奇数时为内测版本，为偶数时为发行版。
-\end{itemize}
+此外，由于有机分子的存在，在研究该类钙钛矿材料的性质时需要特别考虑范德华力及其他可能的相互作用。
+实验和计算模拟\upcite{wangDensityFunctionalTheory2013, puScreeningPerovskiteMaterials2021, varadwajSignificanceHydrogenBonding2019}上均证实有机金属卤化物钙钛矿中存在氢键及其他非共价相互作用，并对材料的结构、能带等诸方面均有影响。
+
+综上，研究有机金属卤化物钙钛矿，如\ce{MAPbI3}，需要特别考虑其中有机阳离子的取向和转动，以及可能存在的氢键等相互作用对输运能垒的影响；此外，合理设计其中的金属阳离子和卤族元素可以提高材料稳定性等性能指标。
+
+\section{计算方法}
+
+随着理论的深入、算力的提高，利用高性能计算对材料的性能进行模拟成为了可能。近年来，理论计算在研究化学反应微观机理、预测材料结构和性能等方面进展突出，很好地揭示了一般实验难以表征的结果，因而引起人们注意。
+
+\subsection{密度泛函理论}
+
+基于密度泛函理论（Density function theory，DFT）的第一性原理计算可以精确计算固体系统的电子基态，因此在锂金属电池的计算模拟中应用广泛\upcite{1review_22}。
+
+1965年，Kohn和Sham\upcite{1review_23}在Thomas\upcite{1review_24}、Fermi等前人的研究基础上，提出了著名的 Kohn-Sham方 程，揭示了基态能量和电子密度间的确切关系。通过自洽求解 Kohn-Sham 方程，可以获得材料的总能量、稳定结构和能带等基础信息。
+
+建立 Kohn-Sham 方程需要一些近似处理和定理支撑。首先，对于多粒子体系，在不考虑其他外场作用的前提下，定态薛定谔方程中哈密顿算符为
+\begin{equation}
+    \hat{H}=\hat{H}_{\mathrm{e}}+\hat{H}_{\mathrm{N}}+\hat{H}_{\mathrm{eN}}
+\end{equation}
+
+其中，$\hat{H}_{\mathrm{e}}$和$\hat{H}_{\mathrm{N}}$分别对应电子和原子核的能量(包括动能$\hat{T}$、相互作用能$\hat{V}$)，$\hat{H}_{\mathrm{eN}}$对应电子与原子核间相互作用能，具体表示为
+\begin{gather}
+    \hat{H}_e(r) = \hat{T}_e(r)+\hat{V}_{\mathrm{ee}}(r) \\
+    \hat{H}_N(R) = \hat{T}_N(R)+\hat{V}_{\mathrm{NN}}(R) \\ 
+    \hat{H}_{\mathrm{eN}}(r,R) = \mathrm{ }\hat{V}_{\mathrm{eN}}(r,R) 
+\end{gather}
+
+根据Born-Oppenheimer近似\upcite{1review_28}，将原子核的运动和核外电子的运动分开考虑：研究电子运动时原子核处于其瞬时位置上；研究原子核运动时不考虑电子在空间的具体分布。因此，对于电子，有
+\begin{equation}{\label{eq:total}}
+    \hat{H}=\hat{T}_{\mathrm{e}}(r)+\hat{V}_{\mathrm{ee}}(r)+\hat{V}_{\mathrm{NN}}(R)+\hat{V}_{\mathrm{eN}}(r,R)
+\end{equation}
+
+其中，表示原子核间排斥能的$\hat{V}_{\mathrm{NN}}(R)$近似为常数。
+由于公式\ref{eq:total}对于多电子体系过于复杂，无法利用该式直接求解定态薛定谔方程。
+Hohenberg和Kohn利用粒子数密度函数$\rho(r)$作为基本变量，来表述体系的各种性质，并给出Hohenberg-Kohn定理\upcite{1review_23}：不计自旋的全同费米子系统的基态能量是粒子数密度函数$\rho(r)$的唯一泛函；对给定的哈密顿量，能量泛函$E_0[\rho]$对正确的粒子数密度函数$\rho(r)$取极小值，并等于基态能量。其中，$\rho(r)$满足：
+\begin{equation}
+    \rho(r)=N\int_{}^{}\mathrm{d}r_1 \cdots \int_{}^{}\mathrm{d}r_N | \Psi (r,r_1,\cdots,r_N) |^2
+\end{equation}
+
+由此，体系的能量可写作
+\begin{equation}
+    E[\rho] = \Psi ^*(\hat{T}_{\mathrm{e}}+\hat{V}_{\mathrm{ee}}+\hat{V}_{\mathrm{ext}})\Psi
+\end{equation}
+其中，假定所有电子都具有相同的局域势$\nu (r)$ （包括电子之间的关联、原子核势场、外场等），使用$\hat{V}_{\mathrm{ext}}$表示外势对电子的作用，有
+\begin{equation}
+    V_{\mathrm{ext}} = \int_{}^{}\mathrm{d}r\nu(r)\rho(r)
+\end{equation}
+
+使用无相互作用电子系统的相关量替代上述系统，并用$N$个单电子波函数$ \varphi _i(r) $组成密度函数$\rho(r)$，即
+\begin{equation}
+    \rho(r)=\sum_{i=1}^{N}|\varphi_i (r)|^2
+\end{equation}
+故电子动能
+\begin{equation}
+    T_{\mathrm{e}}=\sum_{i=1}^{N}\int_{}^{}\mathrm{d}r\varphi^*_i(r)(-\frac{1}{2}\nabla^2)\varphi_i(r)
+\end{equation}
+电子间相互作用
+\begin{equation}
+    V_{\mathrm{ee}} =\frac{1}{2}\iint_{}^{}\mathrm{d}r\mathrm{d'}\frac{\rho(r)\rho(r')}{|r-r'|}
+\end{equation}
+
+最后用交互关联项$V_{\mathrm{XC}}$表示其余相互作用及替代过程中损失的复杂性。由变分法，得著名的Kohn-Sham方程\upcite{1review_23}
+\begin{equation}
+    {-\frac{1}{2}\nabla^2+V_{\mathrm{KS}}[\rho(r)]}\varphi_i(r)=E_i\varphi_i(r)
+\end{equation}
+
+其中
+\begin{equation}
+    V_{\mathrm{KS}}[\rho[r]]=\nu(r)+\int_{}^{}\mathrm{d}r'\frac{\rho(r')}{|r-r'|}+\frac{\delta E_{\mathrm{XC}}[\rho(r)]}{\delta\rho(r)}
+\end{equation}
+
+求解Kohn-Sham方程的难度主要在于，其中含有交换关联势能$V_{\mathrm{XC}}$，目前尚不知道确切形式，但已有许多有效近似方法。
+例如，局部密度近似（LDA）假设$V_{\mathrm{XC}}$只与局域密度有关而与整个体系密度无关，通过求解均匀电子气来构造$V_{\mathrm{XC}}$的解析形式。
+因此LDA一般试用于电子密度变化比较平缓的体系，能够有效处理金属，但对多数氧化物和盐存在较大偏差。
+Perdew\upcite{1review_28}提出了广义梯度近似（GGA），在$V_{\mathrm{XC}}$中引入电子密度梯度，以此来改善误差。
+每个小范围的$V_{\mathrm{XC}}$不仅仅依赖于其自身的局域电子密度，同时也受到周围电子密度的影响。这使得近似更符合真实情况。
+GGA目前已衍生出多种形式，例如PW86\upcite{perdewAccurateSimpleDensity1986}、PW91\upcite{perdewAccurateSimpleAnalytic1992}。
+当系统中含有过渡元素或稀土元素时，系统的$d$，$f$轨道电子会趋于局部化，电子间的相互作用会使传统方法产生较大偏差，此时DFT + U方法更为有效，其中U是库伦作用参数，一般通过带隙等实验数据拟合得到。
+改善LDA、GGA两种近似的另一种方式为考虑杂化泛函，将GGA的交换能$E^{GGA}_{\mathrm{X}}$与非局域的Hartree-Fock型交换能$E^{GGA}_{\mathrm{X}}$以一定比例$\alpha$混合，和GGA的关联能$E^{GGA}_{\mathrm{X}}$，共同构成交换关联能$E_{\mathrm{XC}}$，如下所示
+\begin{equation}
+    E_{\mathrm{XC}}=\alpha E^{HF}_{\mathrm{X}}+(1-\alpha)E^{GGA}_{\mathrm{X}}+E^{GGA}_{\mathrm{C}}
+\end{equation}
+
+进一步将$E^{HF}_{\mathrm{X}}$限制在短程内，即为HSE型杂化泛函\upcite{heydEfficientHybridDensity2004}，在计算带隙方面更加准确，被广泛使用。
+但杂化泛函在处理性质相差较大的异质结构上并不理想，GW近似可以解决这一问题。实际中，GW近似在DFT计算后作为微扰执行，由此得到的能带计算结果与实际相符得很好。
+
+以上为DFT的主要理论和方法，在实际应用中，许多计算程序已被封装，方便调用，例如VASP（Vienna Ab-initio Simulation Package）是目前进行DFT计算较为完备、最流行的商用软件之一，用户只需向其中输入研究对象、计算方法和待计算性质等命令即可进行计算。但合理应用的关键在于正确设置参数、选择合适的求解方法。
+
+本课题将主要使用VASP软件进行有机金属卤化物体系的计算模拟。
+
+\subsection{微动弹性带方法}
+
+对于化学反应和原子迁移而言，在确定反应物（初始位置）和生成物（最终位置）的结构后，理论上两者间存在能量最小路径（minimum energy path,MEP），而过渡态为其上的最高点，即一阶鞍点。过渡态与反应物的能量之差即为反应能垒，是研究反应过程的最为基础、重要的参数。研究过渡态的分子结构、成键关系，有助于深入认识反应机理。因此，准确获得过渡态的结构十分重要。
+
+微动弹性带（Nudged Elastic Band，NEB）及在此基础上发展的CI-NEB方法，是计算过渡态的常用方法。
+
+首先，在反应物结构和生成物结构之间建立一系列结构（称为 image）；之后将相邻的image使用弹簧力进行连接，形成具有弹性的链条（即Elastic Band）；进而，对这一链条整体进行优化，使其受力最小，进而得到MEP；最后，结合能量、振动频率等信息，确定过渡态。
+
+而CI-NEB方法则在NEB原方法之上，分解掉原子在特定方向上的受力，提高了过渡态搜索效率。
+
+本课题将主要使用CI-NEB方法进行锂离子迁移过程的模拟和求解。
+
+\section{论文选题依据及安排}
+
+在最近的研究中，Yao等人\upcite{yinMetalChloridePerovskite2020}设计了有机金属卤化物钙钛矿型保护层，实验上证明该新型保护层在抑制枝晶生长、保证电池良好循环性能上有很好的效果。
+然而，Yao等人的工作对锂离子在有机金属卤化物钙钛矿型保护层中的输运机理研究不足。
+他们的工作中仅就单个锂离子在\ce{MASnCl3}和\ce{MAPbCl3}中的输运路径进行初步计算模拟，在极性分子取向、多输运路径、协同输运等方面并未深入研究。因此，本课题在Yao等人的基础之上，通过计算模拟对有机金属卤化物钙钛矿型锂金属电极保护层锂离子输运的机制进行更为系统深入的研究。
+
+论文安排如下：
+
+\begin{enumerate}
+    \item 有机金属卤化物钙钛矿中存在大量氢键等相互作用，这可能对锂离子的输运机理等产生较大影响。因此，论文首先实现对其中氢键等成键的强度估计，并验证该方法的有效性。
+    \item 由于有机阳离子具有取向，锂离子在其中存在多个不等价的嵌入位置。论文将此就建立并计算分析锂离子嵌入的稳定模型，包括几何结构、电子结构、成键情况等。
+    \item 在锂离子嵌入模型的基础之上，建立并计算锂离子在不同点位间的迁移模型，并对其过渡态进行分析。论文将在最后说明氢键对锂离子输运过程的影响。
+\end{enumerate}
+

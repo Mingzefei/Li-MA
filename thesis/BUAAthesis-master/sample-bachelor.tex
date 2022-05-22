@@ -1,6 +1,19 @@
 % !Mode:: "TeX:UTF-8"
 \documentclass[bachelor,openany,oneside,color,AutoFakeBold=true]{buaathesis}
 
+% 图片导入位置
+\graphicspath{{../../images/}}
+
+% 额外的包
+\usepackage{mhchem} % 化学式
+\usepackage{siunitx} % 单位
+
+% 伪代码
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\floatname{algorithm}{算法}
+
 % 参考文献
 \usepackage{gbt7714}
 % 参考文献输出方式，numerical为按照出现顺序，authoryear为按照作者姓名和年份
@@ -30,7 +43,7 @@
 
 % 正文
 \include{data/chapter1-intro}
-\include{data/chapter2-config}
+\include{data/chapter2-bcp}
 \include{data/chapter3-download}
 \include{data/chapter4-basic}
 \include{data/chapter5-usage}
