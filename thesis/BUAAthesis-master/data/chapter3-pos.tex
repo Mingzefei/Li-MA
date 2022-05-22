@@ -25,7 +25,7 @@
 降低晶体结构的对称性，将对称群设置为 $P1$。
 如图\ref{fig:ideal-struc}所示，结构优化后结果将在下节给出。
 
-\begin{figure}[htbp]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.75\textwidth]{../data/111-ideal/better-CONTCAR.png}
     \caption{扩胞处理后的钙钛矿理想结构（绿色球为卤族原子，深灰色球为 \ce{Sn}或 \ce{Pb}，浅灰色、棕色和粉色球分别为 \ce{N}、\ce{C}和 \ce{H}）}
@@ -40,7 +40,7 @@
 这意味着，三个面心具有不同的化学环境。
 将这三个面心分别记为 pos1、pos2和pos3。
 
-\begin{figure}[htbp]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.75\textwidth]{../data/111-ideal/3pos.png}
     \caption{三个不等价的面心（红球所示）}
@@ -50,19 +50,19 @@
 
 因此，针对上述不同位置分别插入锂原子，并控制系统总电子数模拟锂离子所带正电荷，固定晶格参数，如图\ref{fig:pos1-poscar}、图\ref{fig:pos2-poscar}和图\ref{fig:pos3-poscar}所示，结构优化后结果将在下节给出。
 
-\begin{figure}[htbp]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.75\textwidth]{../data/111-11-pos1/POSCAR.png}
     \caption{pos1处嵌入锂离子（红色球为锂离子）}
     \label{fig:pos1-poscar}
 \end{figure}
-\begin{figure}[htbp]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.75\textwidth]{../data/111-21-pos2/POSCAR.png}
     \caption{pos2处嵌入锂离子（红色球为锂离子）}
     \label{fig:pos2-poscar}
 \end{figure}
-\begin{figure}[htbp]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.75\textwidth]{../data/111-31-pos3/POSCAR.png}
     \caption{pos3处嵌入锂离子（红色球为锂离子）}
@@ -93,72 +93,70 @@
 
 由于四种体系的计算结果类似，仅以图片形式展示\ce{MASnCl3}的理想结构（图\ref{fig:111-ideal-contcar}）和三种锂离子嵌入结构（图\ref{fig:111-11-pos1-contcar}、\ref{fig:111-21-pos2-contcar}和\ref{fig:111-31-pos3-contcar}）。
 
-\begin{figure}[htbp]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.75\textwidth]{../data/111-ideal/CONTCAR.png}
     \caption{结构优化后的\ce{MASnCl3}理想结构}
     \label{fig:111-ideal-contcar}
 \end{figure}
-\begin{figure}[htbp]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.75\textwidth]{../data/111-11-pos1/CONTCAR.png}
     \caption{结构优化后的\ce{Li+}嵌入\ce{MASnCl3}pos1 位置结构}
     \label{fig:111-11-pos1-contcar}
 \end{figure}
-\begin{figure}[htbp]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.75\textwidth]{../data/111-21-pos2/CONTCAR.png}
     \caption{结构优化后的\ce{Li+}嵌入\ce{MASnCl3}pos2 位置结构}
     \label{fig:111-21-pos2-contcar}
 \end{figure}
-\begin{figure}[htbp]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.75\textwidth]{../data/111-31-pos3/CONTCAR.png}
     \caption{结构优化后的\ce{Li+}嵌入\ce{MASnCl3}pos3 位置结构}
     \label{fig:111-31-pos3-contcar}
 \end{figure}
 
+\begin{table}
+    \centering
+    \caption{不同钙钛矿体系理想结构的优化后晶格参数}
+    \label{tb:cell-paramter}
+    \begin{tabular}{ccccccc}
+        \toprule
+        钙钛矿体系 & a/\si{\angstrom} & b/\si{\angstrom} & c/\si{\angstrom} & $\alpha$/\si{\degree} & $\beta$/\si{\degree} & $\gamma$/\si{\degree}\\
+        \midrule
+        \ce{MASnCl3}    & 11.11568 & 11.43881 & 11.52084 & 86.73 & 89.60 & 90.29 \\
+        \ce{MASnBr3}    & 11.62841 & 11.80050 & 11.91464 & 86.08 & 89.73 & 90.39 \\
+        \ce{MASnI3}    & 12.38372 & 12.54657 & 12.58601 & 87.35 & 89.72 & 90.29 \\
+        \ce{MAPbI3}    & 12.57420 & 12.69275 & 12.78958 & 88.80 & 89.95 & 89.97 \\           
+        \bottomrule
+    \end{tabular}
+\end{table}
+
 根据计算结果，结构优化后的理想结构晶格参数如表\ref{tb:cell-paramter}所示。
 比较不同体系的晶格参数可知，随着构成无机框架原子的原子半径增大，晶格参数也随之增大。
 
-\begin{table}[!htbp]
-    \begin{center}
-        \begin{tabular}[c]{列对齐}
-            \toprule
-            钙钛矿体系 & a/\si{\angstrom} & b/\si{\angstrom} & c/\si{\angstrom} & $\alpha$/\si{\degree} & $\beta$/\si{\degree} & $\gamma$/\si{\degree}\\
-            \midrule
-            \ce{MASnCl3}    & 11.11568 & 11.43881 & 11.52084 & 86.73 & 89.60 & 90.29 \\
-            \ce{MASnBr3}    & 11.62841 & 11.80050 & 11.91464 & 86.08 & 89.73 & 90.39 \\
-            \ce{MASnI3}    & 12.38372 & 12.54657 & 12.58601 & 87.35 & 89.72 & 90.29 \\
-            \ce{MAPbI3}    & 12.57420 & 12.69275 & 12.78958 & 88.80 & 89.95 & 89.97                
-            \bottomrule
-        \end{tabular}
-        \caption{不同钙钛矿体系理想结构的优化后晶格参数}
-        \label{tb:cell-paramter}
-    \end{center}
+\begin{table}
+    \centering
+    \caption{不同钙钛矿体系理想结构的\ce{H}与临近卤原子距离}
+    \label{tb:HX-dist}
+    \begin{tabular}{ccc}
+        \toprule
+        钙钛矿体系 & \ce{NH3}端H与临近卤原子距离/\si{\angstrom} & \ce{CH3}端H与临近卤族原子距离/\si{\angstrom}\\
+        \midrule
+        \ce{MASnCl3}    & 2.25, 2.51 & 2.90 \\
+        \ce{MASnBr3}    & 2.43, 2.79& 2.95 \\
+        \ce{MASnI3}    & 2.67, 2.91 & 3.27 \\
+        \ce{MAPbI3}    & 2.69, 2.80 & 3.38  \\              
+        \bottomrule
+    \end{tabular}
 \end{table}
 
-钙钛矿中的有机分子，甲胺离子，值得注意。
+钙钛矿中的有机分子，即甲胺离子，值得注意。
 
 在理想结构中，甲胺离子的胺基一端更倾向于靠近无机框架中的卤族原子（表\ref{tb:HX-dist}）。
 当无机框架尺寸较大时，这一现象更为明显。
-
-\begin{table}[!htbp]
-    \begin{center}
-        \begin{tabular}[c]{列对齐}
-            \toprule
-            钙钛矿体系 & \ce{NH3}端H与临近卤原子距离/\si{\angstrom} & \ce{CH3}端H与临近卤族原子距离/\si{\angstrom}\\
-            \midrule
-            \ce{MASnCl3}    & 2.25, 2.51 & 2.90 \\
-            \ce{MASnBr3}    & 2.43, 2.79& 2.95 \\
-            \ce{MASnI3}    & 2.67, 2.91 & 3.27 \\
-            \ce{MAPbI3}    & 2.69, 2.80 & 3.38                
-            \bottomrule
-        \end{tabular}
-        \caption{不同钙钛矿体系理想结构的\ce{H}与临近卤原子距离}
-        \label{tb:HX-dist}
-    \end{center}
-\end{table}
 
 当锂离子嵌入钙钛矿体系时，其中的有机分子取向发生明显改变。
 整体而言，甲胺分子的甲基一端更接近锂离子，而胺基端更接近无机框架中的卤原子。
