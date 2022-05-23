@@ -31,6 +31,7 @@ do
         cd ../../
     elif [[ ${i} == *"neb"* ]]; then
         cd ${i}
+        pwd >> ${data_path}/parallel_dir
         for j in ./*
         do
             if [ -d $j ]; then
@@ -72,29 +73,48 @@ function run_H_bond(){
     fi
 }
 
+function convert_png(){
+    for file in `ls -a ./`
+    do
+        if [[ ${file} == *'.png' ]]; then
+            echo `pwd` ${file}
+            # convert -resize "811000@" ${file}.scale5 ${file}
+            # convert -crop 640x638+320+0 ${file} ${file}
+            cp ${file} ${file}.scale1.cut
+        fi
+    done
+        
+}
+
+
 function CMD {        
 
 	echo "Job $1 Ijob $2 start"
 
     job_path=`sed -n "${1}p" ${data_path}/parallel_dir`
     cd ${job_path}
-    pwd
-    if  [[ ${job_path} == *ideal* ]]; then
-        mv d3_H_bcp_data.npz H_bcp_data.npz # save dist = 3.1
-        # run_H_bond
-    else
-        mv d3_H_bcp_data.npz H_bcp_data.npz # save dist = 3.1
-        mv d3_Li_bcp_data.npz Li_bcp_data.npz # save dist = 3.1
-        # run_H_bond
-        # run_Li_bond
-    fi
+    # pwd
+
+    # run bcp
+    # if  [[ ${job_path} == *ideal* ]]; then
+    #     # mv H_bcp_data.npz d3_H_bcp_data.npz # save dist = 3.1
+    #     # run_H_bond
+    # else
+    #     # mv H_bcp_data.npz d3_H_bcp_data.npz # save dist = 3.1
+    #     # mv Li_bcp_data.npz d3_Li_bcp_data.npz # save dist = 3.1
+    #     # run_H_bond
+    #     # run_Li_bond
+    # fi
+
+    # convert
+    convert_png
 	echo "Job $1 Ijob $2 end"
 }
 
 
 
 Njob=$(cat ${data_path}/parallel_dir | wc -l)    # 作业数目
-Nproc=8    # 可同时运行的最大作业数
+Nproc=4    # 可同时运行的最大作业数
 PID=() # 记录PID到数组, 检查PID是否存在以确定是否运行完毕
 for((i=1; i<=Njob; )); do
 	for((Ijob=0; Ijob<Nproc; Ijob++)); do

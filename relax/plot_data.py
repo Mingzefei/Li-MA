@@ -38,6 +38,8 @@ def plot_dos(data_file:str, title:str, save_file:str):
     # pos_plt_dos.show(xlim=(-20,10),ylim=(0,200))
     pos_plt_dos.save_plot(save_file, img_format=u'png', xlim=(-20,10),ylim=(0,200), title=title)
     
+    print(pos_dos_data.get_gap())
+    
 def plot_ldos(data_file:str, atoms:list, title:str, save_file:str):
     """
     plot LDOS

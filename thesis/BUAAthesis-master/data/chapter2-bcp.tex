@@ -1,5 +1,6 @@
 % !Mode:: "TeX:UTF-8"
 \chapter{有机金属卤化物钙钛矿中氢键的分析方法}
+\label{ch:bcp}
 
 \section{引言}
 
@@ -52,7 +53,7 @@ Varadwaj等人\upcite{varadwajSignificanceHydrogenBonding2019}深入研究了氢
 
 图\ref{fig:bcp-energy}(a)为针对所有氢键体系的bcp处电子密度和氢键键能直接拟合的结果，尽管决定系数 $R^2$ 较好，但平均绝对百分误差 MAPE 很大，因此拟合结果在预测氢键键能上无实际意义；图\ref{fig:bcp-energy}(b)和(c)为针对不带电氢键体系和带电体系的bcp处电子密度和氢键键能分别进行拟合的结果，决定系数 $R^2$ 和 平均绝对百分误差 MAPE 结果均很好。
 
-但是该工作主要基于量子化学方法和分子体系，尚无充分的数bb证明关系式适用于DFT理论下的固体体系。
+但是该工作主要基于量子化学方法和分子体系，尚无充分的数据证明关系式适用于DFT理论下的固体体系。
 本课题将对此进行验证。
 
 \section{代码实现}
@@ -156,7 +157,7 @@ VASP对体系电子密度的计算结果，除受原子位置、赝势、波函�
 
 文献\cite{svaneHowStrongHydrogen2017}通过分割有机阳离子和无机框架的方法，计算了 \ce{MAPbI3} 等体系中的氢键键能，为 \SI{0.09}{eV}至 \SI{0.27}{eV}平均每个阳离子（\ce{MAPbI3}体系为\SI{0.27}{eV}平均每个阳离子，\SI{0.09}{eV}平均每个氢键）。
 本课题针对 \ce{MAPbI3} 体系建模计算，发现其中的有机阳离子提供的氢键配体数量更为复杂，而非文献\cite{svaneHowStrongHydrogen2017}中给出的固定数量3；
-但是，通过将VASP求解得到的 bcp处电子密度 \SI{0.012}{a.u.} 至 \SI{0.017}{a.u.}代入文献\cite{emamianExploringNaturePredicting2019}所提供的电中性体系氢键键能拟合关系式，可得相应的单个氢键键能为\SI{0.08}{eV}至 \SI{0.13}{eV}，与文献值\cite{svaneHowStrongHydrogen2017}\SI{0.09}{eV}相比略有高估，这与上文 VASP 高估 bcp 处电子密度的结论相一致。
+但是，通过将VASP求解得到的 bcp处电子密度 $0.012 \quad \mathrm{a.u.}$ 至 $0.017 \quad \mathrm{a.u.}$代入文献\cite{emamianExploringNaturePredicting2019}所提供的电中性体系氢键键能拟合关系式，可得相应的单个氢键键能为\SI{0.08}{eV}至 \SI{0.13}{eV}，与文献值\cite{svaneHowStrongHydrogen2017}\SI{0.09}{eV}相比略有高估，这与上文 VASP 高估 bcp 处电子密度的结论相一致。
 
 \section{结论}
 

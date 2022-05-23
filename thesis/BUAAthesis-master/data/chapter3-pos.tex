@@ -28,7 +28,7 @@
 \begin{figure}[ht]
     \centering
     \includegraphics[width=0.75\textwidth]{../data/111-ideal/better-CONTCAR.png}
-    \caption{扩胞处理后的钙钛矿理想结构（绿色球为卤族原子，深灰色球为 \ce{Sn}或 \ce{Pb}，浅灰色、棕色和粉色球分别为 \ce{N}、\ce{C}和 \ce{H}）}
+    \caption{扩胞处理后的钙钛矿理想结构（绿色球为卤原子，深灰色球为 \ce{Sn}或 \ce{Pb}，浅灰色、棕色和粉色球分别为 \ce{N}、\ce{C}和 \ce{H}）}
     \label{fig:ideal-struc}
 \end{figure}
 
@@ -48,28 +48,22 @@
 \end{figure}
 
 
-因此，针对上述不同位置分别插入锂原子，并控制系统总电子数模拟锂离子所带正电荷，固定晶格参数，如图\ref{fig:pos1-poscar}、图\ref{fig:pos2-poscar}和图\ref{fig:pos3-poscar}所示，结构优化后结果将在下节给出。
+因此，针对上述不同位置分别插入锂原子，并控制系统总电子数模拟锂离子所带正电荷，固定晶格参数，如图\ref{fig:111-pos-poscar}所示，结构优化后结果将在下节给出。
 
-\begin{figure}[ht]
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.75\textwidth]{../data/111-11-pos1/POSCAR.png}
-    \caption{pos1处嵌入锂离子（红色球为锂离子）}
-    \label{fig:pos1-poscar}
+    \subfigure{
+        \includegraphics[width=0.3\textwidth]{../data/111-11-pos1/POSCAR.png}
+        }
+    \subfigure{
+        \includegraphics[width=0.3\textwidth]{../data/111-21-pos2/POSCAR.png}
+        }
+    \subfigure{
+        \includegraphics[width=0.3\textwidth]{../data/111-31-pos3/POSCAR.png}
+        }
+    \caption{三处位置处嵌入\ce{Li+}（红色球为\ce{Li+}）}
+    \label{fig:111-pos-poscar}
 \end{figure}
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.75\textwidth]{../data/111-21-pos2/POSCAR.png}
-    \caption{pos2处嵌入锂离子（红色球为锂离子）}
-    \label{fig:pos2-poscar}
-\end{figure}
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.75\textwidth]{../data/111-31-pos3/POSCAR.png}
-    \caption{pos3处嵌入锂离子（红色球为锂离子）}
-    \label{fig:pos3-poscar}
-\end{figure}
-
-
 
 \section{计算结果分析}
 
@@ -91,7 +85,7 @@
 
 通过结构优化，获得\ce{MASnCl3}、\ce{MASnBr3}、\ce{MASnI3}和 \ce{MAPbI3}四种体系的理想结构和三种锂离子嵌入结构。
 
-由于四种体系的计算结果类似，仅以图片形式展示\ce{MASnCl3}的理想结构（图\ref{fig:111-ideal-contcar}）和三种锂离子嵌入结构（图\ref{fig:111-11-pos1-contcar}、\ref{fig:111-21-pos2-contcar}和\ref{fig:111-31-pos3-contcar}）。
+由于四种体系的计算结果类似，仅以图片形式展示\ce{MASnCl3}的理想结构（图\ref{fig:111-ideal-contcar}）和三种锂离子嵌入结构（图\ref{fig:111-pos-contcar}。
 
 \begin{figure}[ht]
     \centering
@@ -99,23 +93,19 @@
     \caption{结构优化后的\ce{MASnCl3}理想结构}
     \label{fig:111-ideal-contcar}
 \end{figure}
-\begin{figure}[ht]
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.75\textwidth]{../data/111-11-pos1/CONTCAR.png}
-    \caption{结构优化后的\ce{Li+}嵌入\ce{MASnCl3}pos1 位置结构}
-    \label{fig:111-11-pos1-contcar}
-\end{figure}
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.75\textwidth]{../data/111-21-pos2/CONTCAR.png}
-    \caption{结构优化后的\ce{Li+}嵌入\ce{MASnCl3}pos2 位置结构}
-    \label{fig:111-21-pos2-contcar}
-\end{figure}
-\begin{figure}[ht]
-    \centering
-    \includegraphics[width=0.75\textwidth]{../data/111-31-pos3/CONTCAR.png}
-    \caption{结构优化后的\ce{Li+}嵌入\ce{MASnCl3}pos3 位置结构}
-    \label{fig:111-31-pos3-contcar}
+    \subfigure{
+        \includegraphics[width=0.3\textwidth]{../data/111-11-pos1/CONTCAR.png}
+        }
+    \subfigure{
+        \includegraphics[width=0.3\textwidth]{../data/111-21-pos2/CONTCAR.png}
+        }
+    \subfigure{
+        \includegraphics[width=0.3\textwidth]{../data/111-31-pos3/CONTCAR.png}
+        }
+    \caption{结构优化后的\ce{Li+}嵌入\ce{MASnCl3}不同位置的结构}
+    \label{fig:111-pos-contcar}
 \end{figure}
 
 \begin{table}
@@ -143,7 +133,7 @@
     \label{tb:HX-dist}
     \begin{tabular}{ccc}
         \toprule
-        钙钛矿体系 & \ce{NH3}端H与临近卤原子距离/\si{\angstrom} & \ce{CH3}端H与临近卤族原子距离/\si{\angstrom}\\
+        钙钛矿体系 & \ce{NH3}端H与临近卤原子距离/\si{\angstrom} & \ce{CH3}端H与临近卤原子距离/\si{\angstrom}\\
         \midrule
         \ce{MASnCl3}    & 2.25, 2.51 & 2.90 \\
         \ce{MASnBr3}    & 2.43, 2.79& 2.95 \\
@@ -153,9 +143,9 @@
     \end{tabular}
 \end{table}
 
-钙钛矿中的有机分子，即甲胺离子，值得注意。
+钙钛矿中的有机分子，即甲胺离子，值得特别注意。
 
-在理想结构中，甲胺离子的胺基一端更倾向于靠近无机框架中的卤族原子（表\ref{tb:HX-dist}）。
+在理想结构中，甲胺离子的胺基一端更倾向于靠近无机框架中的卤原子（表\ref{tb:HX-dist}）。
 当无机框架尺寸较大时，这一现象更为明显。
 
 当锂离子嵌入钙钛矿体系时，其中的有机分子取向发生明显改变。
@@ -167,13 +157,229 @@ pos2位置的“头碰头”形式，较pos1和pos3的“肩并肩”形式，�
 
 \subsection{电子结构}
 
-DOS 
+在结构优化的基础上进行高精度电子自洽计算，获得\ce{MASnCl3}、\ce{MASnBr3}、\ce{MASnI3}和 \ce{MAPbI3}四种体系的理想结构和三种锂离子嵌入结构的电子结构信息。限于篇幅，下面仅就\ce{Li+}嵌入\ce{MASnCl3}的计算结果进行说明。
 
-bcp
+{\bf (A)电子态密度}
+
+作为光电半导体材料，人们更多的关注有机金属卤化物钙钛矿的能带结构、电子态密度（density of states，DOS），从中可以获得诸多光电性质。
+当该材料应用于锂金属电极保护层时，需要起到绝缘、避免短路的作用，因此其导电性有必要进行模拟验证，特别是当锂离子嵌入时仍能起到绝缘作用。
+
+本课题由于使用$2\times2\times2$超胞模型，直接进行能带结构计算需考虑能带折叠问题，
+并且当锂离子嵌入钙钛矿时，体系的对称性进一步降低，无高对称点，无法设置能带计算所必须的K点路径。
+而电子态密度计算，即DOS计算，无需考虑上述两个问题，并可以判断材料的导电性，直接读取出能隙大小；
+而其衍生出的局域态密度（local density of states, LDOS）可以根据不同原子的态密度峰的耦合关系，定性判断原子间成键情况。
+基于上述原因，这里对体系进行电子态密度计算，并求解出局域态密度。
+
+\begin{figure}[htbp]
+    \centering
+    \subfigure{
+        \includegraphics[width=0.3\textwidth]{111-11-dos.png}
+        }
+    \subfigure{
+        \includegraphics[width=0.3\textwidth]{111-21-dos.png}
+        }
+    \subfigure{
+        \includegraphics[width=0.3\textwidth]{111-31-dos.png}
+        }
+    \caption{\ce{Li+}嵌入\ce{MASnCl3}不同位置的DOS计算（已进行分波处理）}
+    \label{fig:111-pos-dos}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \subfigure{
+        \includegraphics[width=0.3\textwidth]{111-11-ldos.png}
+        }
+    \subfigure{
+        \includegraphics[width=0.3\textwidth]{111-21-ldos.png}
+        }
+    \subfigure{
+        \includegraphics[width=0.3\textwidth]{111-31-ldos.png}
+        }
+    \caption{\ce{Li+}嵌入\ce{MASnCl3}不同位置的LDOS计算（选择\ce{Li+}与其临近的\ce{H}）}
+    \label{fig:111-pos-ldos}
+\end{figure}
+
+\ce{Li+}嵌入\ce{MASnCl3}pos1、pos2和pos3位置时的DOS计算结果如图\ref{fig:111-pos-dos}所示，
+其能隙分别为 \SI{1.9433}{eV}、\SI{1.9367}{eV}和 \SI{1.5489}{eV}。
+整体而言，除pos3处嵌入以外，\ce{Li+}嵌入其余位置基本不会影响体系的绝缘性能（理想结构的\ce{MASnCl3}计算所得能隙为 \SI{1.9457}{eV}）。
+pos3能隙的明显降低，推测是由于\ce{Li+}嵌入pos3位置时，甲胺分子旋转，无机框架畸变导致。
+
+根据\ce{Li+}嵌入\ce{MASnCl3}pos1、pos2和pos3位置时的LDOS计算结果图\ref{fig:111-pos-ldos}，
+\ce{Li+}在费米能级以上存在三个较明显的峰；在费米能级以下存在两个相邻的峰，且峰的高度低于费米能级以上的三个峰。
+上述五个峰均可在临近的 \ce{H}原子中找到对应能量的峰，即LDOS上发生耦合，
+这意味 \ce{Li+}与 临近的\ce{H}存在一定程度的相互作用。
+
+此外，图\ref{fig:111-pos-dos}展示出锂离子嵌入不同位置时，DOS的不同能量峰的高度存在较大差异。
+这与前文所认为的三种嵌入位置并不等价的结论相符。
+
+{\bf (B)电荷密度差分}
+
+电荷密度图表现了体系电子处于稳态时，出现于不同位置的概率；
+电荷密度差分通过对部分原子分别进行电子自洽求解所得电荷密度进行比较，
+表现出部分原子的引入对体系电荷密度的改变，
+能够直观反映原子的成键情况。
+
+这里使用 \ce{Li+}作为引入原子，对原体系进行电荷密度差分计算，绘制电荷密度差分图。
+
+\begin{figure}[htbp]
+    \centering
+    \subfigure{
+        \includegraphics[width=0.3\textwidth]{../data/111-11-pos1/111-11-pos1_CHGDIFF.png}
+        }
+    \subfigure{
+        \includegraphics[width=0.3\textwidth]{../data/111-21-pos2/111-21-pos2_CHGDIFF.png}
+        }
+    \subfigure{
+        \includegraphics[width=0.3\textwidth]{../data/111-31-pos3/111-31-pos3_CHGDIFF.png}
+        }
+    \caption{\ce{Li+}嵌入\ce{MASnCl3}不同位置的电荷密度图差分图（黄色表示电荷密度增加，蓝色表示电荷密度减少）}
+    \label{fig:111-pos-chgdiff}
+\end{figure}
+
+图\ref{fig:111-pos-chgdiff}表现了当 \ce{Li+}嵌入有机金属卤化物钙钛矿时，体系电子密度的空间变化。
+其中，\ce{Li+}与其临近的三或四个卤族离子（图中为 \ce{Cl}）之间电子密度增加，发生成键关系。
+根据 \ce{Li}和 \ce{Cl}电负性推测，该键的主要成分为离子键。
+而有机分子 \ce{CH3NH3+} 与 \ce{Li+}的相互作用行为更为复杂。
+根据电荷密度差分图，\ce{Li+} 与其临近的两个 甲胺离子的甲基端（\ce{CH3}）之间的电子密度同样增加。
+同时，原甲胺分子中的电荷密度重新分布，末端的 \ce{H}附近电子密度减少；
+\ce{C}和 \ce{N} 之间的共价键也发生改变。
+这意味着，锂离子和甲胺离子间存在相互作用，并且锂离子的嵌入影响了甲胺离子与无机框架的相互作用。
+
+\begin{figure}[htbp]
+    \centering
+    \subfigure{
+        \includegraphics[width=0.45\textwidth]{../data/111-11-pos1/CHGCAR_sum.png}
+        }
+    \subfigure{
+        \includegraphics[width=0.45\textwidth]{../data/111-11-pos1/CHGCAR_sum-2D.png}
+        }
+    \caption{\ce{Li+}嵌入\ce{MASnCl3}pos1位置的电荷密度截面图（蓝色表示电荷密度为0，红色表示电荷密度最大）}
+    \label{fig:111-pos1-chg}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \subfigure{
+        \includegraphics[width=0.45\textwidth]{../data/111-11-pos1/111-11-pos1_CHGDIFF-plan.png}
+        }
+    \subfigure{
+        \includegraphics[width=0.45\textwidth]{../data/111-11-pos1/111-11-pos1_CHGDIFF-2D.png}
+        }
+    \caption{\ce{Li+}嵌入\ce{MASnCl3}pos1位置的电荷密度图差分截面图（蓝色表示电荷密度减少，红色表示电荷密度增大）}
+    \label{fig:111-pos1-diffchg}
+\end{figure}
+
+{\bf (C)bader电荷计算}
+
+AIM理论根据原子核和电子密度将空间划分为区域，通过分别对区域内电子进行积分，可以获得原子所带电子，进而估计原子化合价。
+利用 VTST \footnote{http://theory.cm.utexas.edu/henkelman/code/bader/}中的软件可以实现上述过程。
+
+\begin{table}[htbp]
+    \begin{center}
+        \caption{锂离子与其临近原子（团）的整体电荷数（\ce{Li}1号、\ce{H}14号、\ce{C}6号、\ce{CH3}6号、\ce{NH3}6号、\ce{CH3NH3}6号、\ce{Cl}6号和\ce{Sn}2号）}
+        \begin{tabular}{ccccccccc}
+            \toprule
+             & \ce{Li} & \ce{H} & \ce{C} & \ce{CH3} & \ce{NH3} & \ce{CH3NH3} & \ce{Cl} & \ce{Sn} \\
+            \midrule
+            理想结构 & - & +0.073 & +0.198 & +0.482 & +0.327 & +0.808 & -0.705 & +1.272\\
+            pos1结构 & +0.901 & +0.082 & +0.186 & +0.439 & +0.341 & +0.780 & -0.724 & +1.287\\
+            \bottomrule
+        \end{tabular}
+        \label{tb:bader}
+    \end{center}
+\end{table}
+
+表\ref{tb:bader}为锂离子与其临近原子（团）的整体电荷数，即化合价。
+通过对比理想结构与锂离子嵌入后的差异，分析其中的电子转移。
+锂离子化合价为+0.901价，较嵌入前的+1价降低0.099，这意味着大约有0.1个电子转移至锂离子。
+同样的，锂离子嵌入前后，约有0.01个电子转移出14号\ce{H}，0.04个电子转移至临近的甲基，0.01个电子转移出相应的胺基；总共约有0.03个电子转移出临近的甲胺离子；对于无机框架，与锂离子临近的 \ce{Cl}转入0.02个电子， \ce{Sn}转出0.015个电子。
+
+综上，与锂离子临近的两个甲胺离子是锂离子的主要给电子体，尽管甲胺离子和锂离子均带正电荷；无机框架中的金属原子向与锂离子成键的卤原子转移电子，间接地影响锂离子。
+
+{\bf (D)电子局域化函数计算}
+
+为进一步说明体系中甲胺分子与锂离子间的相互作用，计算并分析体系的电子局域化函数（Electron Localization function，ELF）。
+
+ELF用于描述指定位置处的电子，在其附近找到与其自旋相同的电子的概率，可以表征该处电子的局域化程度。
+根据定义，当ELF=0时，电子完全离域化；
+当ELF=0.5时，电子表现为自由电子气；
+当ELF=1时，电子完全局域化。
+
+\begin{figure}[htbp]
+    \centering
+    \subfigure{
+        \includegraphics[width=0.45\textwidth]{../data/111-11-pos1/ELFCAR.png}
+        }
+    \subfigure{
+        \includegraphics[width=0.45\textwidth]{../data/111-11-pos1/ELFCAR-2D.png}
+        }
+    \caption{\ce{Li+}嵌入\ce{MASnCl3}pos1位置的电子局域化函数截面图（蓝色值为0，红色值为1）}
+    \label{fig:111-pos1-elf}
+\end{figure}
+
+根据计算结果图\ref{fig:111-pos1-elf}，
+与锂离子相邻的甲胺分子较其他甲胺分子，其电子局域化函数存在一定差异。
+甲胺分子与锂离子相邻部分的电子有离域化倾向。
+从图\ref{fig:111-pos1-elf}还可以看出，临近锂离子会导致分子内CN键中电子局域化增强。
+
+{\bf (E)bcp处电子密度}
+
+一般而言，比较同类原子间bcp处电子密度可以定性的判断键的强度。
+Emamian等人\upcite{emamianExploringNaturePredicting2019}通过系统比较氢键键能与bcp处电子密度，证明两者存在很好的正比关系。
+该结论扩大了bcp处电子密度的应用范围，可用于氢键体系下不同类原子间氢键强度的比较，并估计其键能。
+章节\ref{ch:bcp}进一步验证了该方法对本课题研究体系的适用性。
+
+\begin{table}
+    \centering
+    \caption{\ce{MASnCl3}理想结构和pos1的\ce{H}与临近卤原子bcp处电子密度}
+    \label{tb:HX-bcp}
+    \begin{tabular}{ccc}
+        \toprule
+         & \ce{NH3}端H与临近卤原子bcp处电子密度/$10^3 \quad \mathrm{a.u.}$ &\ce{CH3}端H与临近卤原子bcp处电子密度 $10^3 \quad \mathrm{a.u.}$\\
+        \midrule
+        理想结构   & 5.9, 14.8, 23.0, 23.7 & 6.6, 6.9\\
+        无\ce{Li+}的pos1结构  & 5.6~16.9, 20.2~30.4 & 4.5~9.5, 14.9~15.0 \\
+        \ce{Li+}嵌入pos1结构  & 5.7~16.8, 20.1~30.3 & 5.1~9.4, 14.7~15.7 \\          
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+表\ref{tb:HX-bcp}为 \ce{MASnCl3} 的bcp处电子密度计算结果。
+
+对于理想结构，
+其中甲胺分子的 \ce{NH3}端 \ce{H}与无机框架中的 \ce{Cl}主要形成四种强度的氢键，最强强度的氢键键长为 \SI{2.54}{\angstrom}；
+而\ce{NH3}端 \ce{H}形成的氢键相对较弱。
+该现象可通过 \ce{N}和 \ce{C}电负性的进行解释：\ce{N}的电负性为3.04，\ce{C}的电负性为2.55，
+这意味着 \ce{N}更能稳定电子，使末端的 \ce{H}更易裸露出质子，
+从而与无机框架中电子密度较大的\ce{Cl}相互作用，形成更高强度的氢键。
+前文关于bader电荷的计算结果（表\ref{tb:bader}）可以验证该观点。
+
+锂离子嵌入钙钛矿后，体系中多个有机分子的取向和位置发生改变。
+这使得甲胺与无机框架中卤原子的距离和成键强度，由理想结构中简并的少数固定数值，分裂为服从一定分布的多个数值。
+
+为说明锂离子对体系内氢键的影响，将从两个方面进行分析。
+
+电子结构方面，首先考虑锂离子对体系电子结构的影响。
+这里将锂离子嵌入pos1位置优化后的结构中锂离子移除，固定其余原子，进行电子自洽计算，即表\ref{tb:HX-bcp}中“无\ce{Li+}的pos1结构”结果。
+对比有无\ce{Li+}嵌入的结果，可以认为， 在电子结构方面，\ce{Li+}对于体系整体氢键强度影响较小。
+其中 甲基端氢键随 \ce{Li+}的嵌入得到微弱的增强（约 \SI{1.3}{\percent}），而胺基端氢键的削弱效果更为微弱（低于\SI{1}{\percent}）。
+此外，结合前文bader电荷等计算结果，锂离子与临近甲胺分子存在成键作用和电子转移，
+但由于锂离子自身呈正电性，锂离子对其“吸引”效果较弱。
+
+位阻方面，考虑锂离子嵌入位阻导致的有机分子的取向改变和旋转。
+对于无机框架中的甲胺离子，胺基端所形成氢键的强度较甲基端更高， \ce{Li+} 插入胺基附近会导致更大的位阻， 因此\ce{Li+}倾向于插入甲基附近以减少位阻。
+并且，甲胺在无机框架中存在多种能量相近的取向，例如理想结构中$<100>$为最优取向，而将超胞中某个甲胺取向改为$<\hat{1}00>$、$<010>$等同族取向后能量仍相近。
+这是由于同族取向下，甲胺均可以与无机框架形成等价的氢键网络。
+因此，甲胺分子取向的改变不会导致大幅的能量提高。
+
+综上，由于有机分子和卤原子间存在大量氢键，锂离子嵌入会产生较大位阻；
+降低嵌入产生的位阻是有机分子旋转的主要原因；
+锂离子对体系电子结构、成键强度的直接影响极小。
 
 \section{结论}
 
-不同位置
+该部分建立了\ce{MASnCl3}、\ce{MASnBr3}、\ce{MASnI3}和 \ce{MAPbI3}四种体系的理想结构模型和三种锂离子嵌入结构模型，并进行结构优化和电子自洽计算。
 
-不同结构
+计算结果表明，(a)由于氢键作用，理想结构中，甲胺离子的胺基一端更倾向于靠近无机框架中的卤原子；(b)为降低锂离子嵌入导致的位阻，有机分子通过旋转改变取向，并且由于氢键强度的差异，旋转使甲基端靠近锂离子，胺基端远离锂离子；(c)锂离子对体系原本的电子结构、成键强度的影响极小。
 
