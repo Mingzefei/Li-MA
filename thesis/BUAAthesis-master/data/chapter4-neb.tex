@@ -1,0 +1,221 @@
+% !Mode:: "TeX:UTF-8"
+\chapter{锂离子在有机金属卤化物钙钛矿中迁移的计算}
+
+\section{引言}
+
+在章\ref{ch:pos}中建立并计算了锂离子嵌入模型，
+获得锂离子三个不等价位点的稳定结构。
+该章将首先基于上述三个结构，利用CI-NEB 方法建立锂离子在点位点间迁移的模型，以模拟锂离子输运过程；
+之后针对其中的过渡态结构进行分析，以说明锂离子迁移能垒低的原因。
+
+\section{模型搭建}
+
+\subsection{等价位点的模型结构}
+
+为模拟锂离子输运的全过程，需要使用等价的位点作用为迁移的始末态进行CI-NEB建模。
+根据前文对锂离子嵌入位置的分析，不等价位点无法通过对称性重合，而等价位点间仅能通过平移对称性实现重合。
+理论上，等价的位点环境相同，锂离子嵌入等价位点的结构优化结果也同样通过平移对称性重合。
+但在实际计算中，由于存在计算误差，不能保证平移等价的初始结构在结构优化后依然具有平移等价的性质。
+
+针对上述问题，并为减少计算量，本课题通过算法，利用平移等价的性质，已知结构的平移等价结构。
+该方法主要包括两步：
+\begin{enumerate}
+    \item 根据周期性条件确定原子坐标的平移操作矩阵，对记录体系原子坐标的POSCAR进行平移操作；
+    \item 根据理想结构确定平移操作后POSCAR中原子的排列顺序，重新排列原子使平移前后原子一一对应（对于VASP软件，在计算CI-NEB时必须保证整始末状态的原子一一对应）。
+\end{enumerate}
+
+\begin{figure}[htbp]
+    \centering
+    \subfigure{
+    \includegraphics[width=0.45\textwidth]{../data/111-121-neb1/00_CONTCAR.png}}
+    \subfigure{
+    \includegraphics[width=0.45\textwidth]{../data/111-121-neb1/13_CONTCAR.png}}
+    \caption{\ce{Li+}嵌入\ce{MASnCl3}pos1位点的结构优化后结构及利用算法生成b方向平移1个单位后的等价结构}
+    \label{fig:111-pos1-eq}
+\end{figure}
+
+
+这样，只需对三种不等价位点的锂离子嵌入模型进行结构优化，就可以快速获得所有位点的锂离子嵌入模型的优化结构，如图\ref{fig:111-pos1-eq}。
+该方法既保证了始末状态的在平移对称性下等价，又减少了额外的计算代价。
+
+\subsection{锂离子迁移方向}
+
+根据有机金属钙钛矿结构（图\ref{fig:111-pos-contcar}），锂离子嵌入的等价位点间仅能通过平移对称性重合，但是由于等价位点间的连线上存在无机框架种的卤原子，锂离子无法直接在等价点位间进行迁移，需要借助临近的八面体空隙，“翻越”卤原子，迁移至等价位点。
+此外，锂离子嵌入不同位点时，甲胺离子会发生不同程度的旋转，这意味模拟锂离子迁移必须考虑甲胺离子的旋转行为。
+因此，使用如下方法模拟锂离子的完整迁移过程：
+\begin{enumerate}
+    \item 使用插值方法，建立并计算相邻不等价位点间锂离子迁移模型（例如，锂离子从pos1迁移至pos2）；
+    \item 使用平移算法，生成等价位点的结构模型（例如，根据pos1结构向b方向平移1个单位生成等价的pos1-eq结构），建立并计算不等价位点至新位点间锂离子迁移模型（例如，锂离子从pos2迁移至pos1-eq）；
+    \item 将上述两个过程相加，得完整路径，进一步提高精度进行计算（例如，锂离子从pos1首先迁移至pos2，再迁移至pos1-eq）。
+\end{enumerate}
+
+% TODO：插入示意图
+
+体系总共存在三个不等价的位点pos1、pos2和pos3，这意味着存在多条不等价的锂离子迁移路径。
+本课题针对a、b和c三个晶格矢量方向，各选择一条锂离子迁移路径进行计算模拟。
+并且，考虑到锂离子靠近胺基时会破坏原本较强的氢键，使体系能量明显升高，
+因此，在选择锂离子迁移路径时，优先选择远离胺基的路径。
+
+
+综上，对\ce{MASnCl3}、\ce{MASnBr3}、\ce{MASnI3}和 \ce{MAPbI3}四种体系建立的模型如下：
+\begin{enumerate}
+    \item pos1-eq：pos1结构向b方向平移1个单位的等价结构；
+    \item pos1-eqeq：pos1结构向-a方向平移1个单位的等价结构；
+    \item pos2-eq：pos2结构向-c方向平移1个单位的等价结构；
+    \item NEB121：\ce{Li+} 由pos1位点迁移至pos2位点，再迁移至pos1-eq位点，沿b方向迁移；
+    \item NEB131：\ce{Li+} 由pos1位点迁移至pos3位点，再迁移至pos1-eqeq位点，沿-a方向迁移；
+    \item NEB212：\ce{Li+} 由pos2位点迁移至pos1位点，再迁移至pos2-eq位点，沿-c方向迁移。
+\end{enumerate}
+
+\begin{figure}[htbp]
+    \centering
+    \subfigure{
+    \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/Li_path_CONTCAR.png}
+    }
+    \subfigure{
+    \includegraphics[width=0.3\textwidth]{../data/111-131-neb2/Li_path_CONTCAR.png}
+    }
+    \subfigure{
+    \includegraphics[width=0.3\textwidth]{../data/111-212n-neb3/Li_path_CONTCAR.png}
+    }
+    \caption{NEB121、NEB131、NEB212迁移模型的示意图}
+    \label{fig:111-neb-Li-path}
+\end{figure}
+
+
+\section{计算结果分析}
+
+\subsection{计算参数}
+
+该部分计算主要为CI-NEB计算，较之前结构优化计算需额外设置控制NEB计算的参数，以及合适的收敛判据。
+
+控制NEB计算的参数主要有：
+IMAGES，NEB算法中过程image的数量，对于子过程设置为6或7；SPRING，连接相邻image的弹簧力；LCINEB=.TRUE.，ICHAIN=0，IBRION=1，POTIM=0，IOPT=1，开启CINEB计算。
+收敛判据方面，考虑到计算体系庞复杂，为提高效率，使用两个级别计算精度，在粗收敛后进一步精收敛。
+粗收敛设置为EDIFF=1E-5，EDIFFG=-0.05；
+精收敛设置为EDIFF=1E-7，EDIFFG=-0.01。
+
+其余参数与结构优化计算时相同。
+
+\subsection{迁移过程}
+
+\ce{MASnCl3}、\ce{MASnBr3}、\ce{MASnI3}和 \ce{MAPbI3}四种体系的计算结果存在一定差异，
+但限于篇幅这里仅展示\ce{MASnCl3}中三条迁移路径的计算结果，其余结果见附录\ref{ap:nebpos}。
+
+\begin{figure}[htbp]
+    \centering
+    \subfigure[00]{
+    \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/00_CONTCAR.png}
+    }
+    \subfigure[03]{
+    \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/03_CONTCAR.png}
+    }
+    \subfigure[04]{
+    \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/04_CONTCAR.png}
+    } \\
+    \subfigure[05]{
+    \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/05_CONTCAR.png}
+    }
+    \subfigure[08]{
+    \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/08_CONTCAR.png}
+    }
+    \subfigure[10]{
+    \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/10_CONTCAR.png}
+    } \\ 
+    \subfigure[13]{
+    \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/13_CONTCAR.png}
+    }
+    \caption{\ce{Li+}嵌入\ce{MASnCl3}的NEB121模型的部分image结构计算结果（image=00,03,04,05,08,10,13）}
+    \label{fig:111-neb121-contcar}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \subfigure[00]{
+    \includegraphics[width=0.3\textwidth]{../data/111-131-neb2/00_CONTCAR.png}
+    }
+    \subfigure[04]{
+    \includegraphics[width=0.3\textwidth]{../data/111-131-neb2/04_CONTCAR.png}
+    }
+    \subfigure[05]{
+    \includegraphics[width=0.3\textwidth]{../data/111-131-neb2/05_CONTCAR.png}
+    } \\
+    \subfigure[07]{
+    \includegraphics[width=0.3\textwidth]{../data/111-131-neb2/07_CONTCAR.png}
+    }
+    \subfigure[10]{
+    \includegraphics[width=0.3\textwidth]{../data/111-131-neb2/10_CONTCAR.png}
+    }
+    \subfigure[11]{
+    \includegraphics[width=0.3\textwidth]{../data/111-131-neb2/11_CONTCAR.png}
+    } \\ 
+    \subfigure[13]{
+    \includegraphics[width=0.3\textwidth]{../data/111-131-neb2/13_CONTCAR.png}
+    }
+    \caption{\ce{Li+}嵌入\ce{MASnCl3}的NEB131模型的部分image结构计算结果（image=00,04,05,07,10,11,13）}
+    \label{fig:111-neb131-contcar}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \subfigure[00]{
+    \includegraphics[width=0.3\textwidth]{../data/111-212n-neb3/00_CONTCAR.png}
+    }
+    \subfigure[03]{
+    \includegraphics[width=0.3\textwidth]{../data/111-212n-neb3/03_CONTCAR.png}
+    }
+    \subfigure[05]{
+    \includegraphics[width=0.3\textwidth]{../data/111-212n-neb3/05_CONTCAR.png}
+    } \\
+    \subfigure[08]{
+    \includegraphics[width=0.3\textwidth]{../data/111-212n-neb3/08_CONTCAR.png}
+    }
+    \subfigure[11]{
+    \includegraphics[width=0.3\textwidth]{../data/111-212n-neb3/11_CONTCAR.png}
+    }
+    \subfigure[12]{
+    \includegraphics[width=0.3\textwidth]{../data/111-212n-neb3/12_CONTCAR.png}
+    } \\ 
+    \subfigure[14]{
+    \includegraphics[width=0.3\textwidth]{../data/111-212n-neb3/14_CONTCAR.png}
+    }
+    \subfigure[16]{
+    \includegraphics[width=0.3\textwidth]{../data/111-212n-neb3/16_CONTCAR.png}
+    }
+    \caption{\ce{Li+}嵌入\ce{MASnCl3}的NEB212模型的部分image结构计算结果（image=00,03,05,08,11,12,14,16）}
+    \label{fig:111-neb212-contcar}
+\end{figure}
+
+图\ref{fig:111-neb121-contcar}、图\ref{fig:111-neb131-contcar}和图\ref{fig:111-neb212-contcar}分别为\ce{Li+}嵌入\ce{MASnCl3}的NEB模型的计算结果中部分image结构。
+
+可以直观看出，锂离子迁移过程中伴随着甲胺离子的转动，锂离子始终接近甲基，而远离胺基。
+该现象可用章节\ref{ch:pos}的结论进行解释：
+甲胺离子不同取向间的能量相近，且能垒较低（室温下，甲胺离子会发生快速旋转\upcite{wasylishenCationRotationMethylammonium1985}，旋转能垒约为 \SI{0.05}{eV}\upcite{frostAtomisticOriginsHighPerformance2014}）；
+由于氢键强度不同，锂离子嵌入甲基与卤原子之间时，其位阻远低于胺基；
+因此，当锂离子在不同位点间迁移时，甲胺离子会以较小的能垒旋转，使胺基端远离锂离子，从而减少锂离子嵌入导致的位阻。
+
+锂离子迁移也对无机框架产生影响，但框架依然维持基本结构。
+由于电负性相差较大，锂离子与无机框架中的卤原子形成离子键。
+根据图\ref{fig:111-neb121-contcar}、图\ref{fig:111-neb131-contcar}和图\ref{fig:111-neb212-contcar}，
+迁移过程中，锂离子与附近3至5个卤原子相互作用。
+静电力作用使卤原子向锂离子靠近，由此导致无机八面体发生旋转和畸变。
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{contrast-P-111-neb-barrier.png}
+    \caption{\ce{Li+}在\ce{MASnCl3}中迁移时体系能量变化}
+    \label{fig:111-barrier}
+\end{figure}
+
+迁移过程中的能量变化值得特别注意，其中的迁移能垒（energy barrier）反映了离子输运的难度。
+对于锂金属电极保护膜而言，低能垒意味着更高的离子迁移数，保证了锂电池的工作性能。
+图\ref{fig:111-barrier}即为\ce{MASnCl3}体系下 \ce{Li+}迁移导致的体系能量变化。
+首先，由图可以直接获得迁移能垒：NEB121、NEB131和NEB212的能垒分别为 \SI{0.29}{eV}、\SI{0.51}{eV}和 \SI{0.32}{eV}。
+
+结构
+能垒
+氢键对能垒的贡献
+
+\subsection{过渡态结构}
+
+\section{结论}
