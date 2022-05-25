@@ -97,7 +97,7 @@ def plot_neb_barrier_1neb(neb_dist:list, neb_energy:list, label:str, title:str, 
     neb_ax.set(xlabel='dist/A', ylabel='energy/eV', title=title)
 
     neb_ax.legend()
-    neb_fig.show()
+    # neb_fig.show()
     neb_fig.savefig(save_file)
     
 def plot_neb_barrier_3dir(all_neb_dist:list, all_neb_energy:list, all_label:list, title:str, save_file:str,xlim=(-5,50),ylim=(-0.1,0.6)):
@@ -178,7 +178,7 @@ def plot_H_bcp_1pos(data_file:str,title:str,save_file:str):
     ax.bar(MA_num, NH_H_bcp, bottom=CH_H_bcp, label="NH3")
 
     # ax.set(ylim=(0,0.15),xlabel='MA index',ylabel='bcp/a.u.',title=title)
-    ax.set(ylim=(0,0.15),xlabel='MA index',ylabel='bcp/a.u.',title=title+'(total: '+str(H_bcp['total'])[0:6]+' a.u.)')
+    ax.set(ylim=(0,0.15),xlabel='MA index',ylabel='bcp\'s electron density/a.u.',title=title+'(total: '+str(H_bcp['total'])[0:6]+' a.u.)')
 
     ax.legend()
     fig.show()
@@ -219,12 +219,12 @@ def plot_neb_H_bcp_1neb(data_dir:str,title:str,save_file:str,smooth_line=False,u
         neb_ax.plot(x, bcp_y, '-o', linewidth=2, label='H bond total')
 
     if ylim == 'auto' or ylim == 'Auto':
-        neb_ax.set(xlabel=xlabel, ylabel='bcp/a.u.', title=title)
+        neb_ax.set(xlabel=xlabel, ylabel='bcp\'s electron density/a.u.', title=title)
     else:
-        neb_ax.set(ylim=ylim,xlabel='images', ylabel='bcp/a.u.', title=title)
+        neb_ax.set(ylim=ylim,xlabel=xlabel, ylabel='bcp\'s electron density/a.u.', title=title)
     
     neb_ax.legend()
-    neb_fig.show()
+    # neb_fig.show()
     neb_fig.savefig(save_file)
     
 def plot_neb_Li_bcp_1neb(data_dir:str,title:str,save_file:str,smooth_line=False,use_dist=False,ylim='auto'):
@@ -264,10 +264,10 @@ def plot_neb_Li_bcp_1neb(data_dir:str,title:str,save_file:str,smooth_line=False,
     if ylim == 'auto' or ylim == 'Auto':
         neb_ax.set(xlabel=xlabel, ylabel='bcp/a.u.', title=title)
     else:
-        neb_ax.set(ylim=ylim,xlabel='images', ylabel='bcp/a.u.', title=title)
+        neb_ax.set(ylim=ylim,xlabel=xlabel, ylabel='bcp/a.u.', title=title)
     
     neb_ax.legend()
-    neb_fig.show()
+    # neb_fig.show()
     neb_fig.savefig(save_file)
 
 def plot_neb_H_Li_bcp_1neb(data_dir:str,title:str,save_file:str,smooth_line=False,use_dist=False,ylim=(0,1)):
@@ -311,7 +311,7 @@ def plot_neb_H_Li_bcp_1neb(data_dir:str,title:str,save_file:str,smooth_line=Fals
     neb_ax.set(ylim=ylim,xlabel=xlabel, ylabel='bcp/a.u.', title=title)
     
     neb_ax.legend()
-    neb_fig.show()
+    # neb_fig.show()
     neb_fig.savefig(save_file)
     
 

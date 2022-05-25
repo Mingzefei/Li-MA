@@ -96,18 +96,18 @@ function CMD {
     # pwd
 
     # run bcp
-    # if  [[ ${job_path} == *ideal* ]]; then
-    #     # mv H_bcp_data.npz d3_H_bcp_data.npz # save dist = 3.1
-    #     # run_H_bond
-    # else
-    #     # mv H_bcp_data.npz d3_H_bcp_data.npz # save dist = 3.1
-    #     # mv Li_bcp_data.npz d3_Li_bcp_data.npz # save dist = 3.1
-    #     # run_H_bond
-    #     # run_Li_bond
-    # fi
+    if  [[ ${job_path} == *ideal* ]]; then
+        cp d31_H_bcp_data.npz H_bcp_data.npz # save dist = 3.1
+        # run_H_bond
+    else
+        cp d31_H_bcp_data.npz H_bcp_data.npz # save dist = 3.1
+        cp d31_Li_bcp_data.npz Li_bcp_data.npz # save dist = 3.1
+        # run_H_bond
+        # run_Li_bond
+    fi
 
     # convert
-    convert_png
+    # convert_png
 	echo "Job $1 Ijob $2 end"
 }
 

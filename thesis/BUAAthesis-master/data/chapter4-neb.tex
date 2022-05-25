@@ -125,7 +125,7 @@ IMAGES，NEB算法中过程image的数量，对于子过程设置为6或7；SPRI
     \subfigure[13]{
     \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/13_CONTCAR.png}
     }
-    \caption{\ce{Li+}嵌入\ce{MASnCl3}的NEB121模型的部分image结构计算结果（image=00,03,04,05,08,10,13）}
+    \caption{\ce{MASnCl3}的NEB121模型的部分image结构计算结果（image=00,03,04,05,08,10,13）}
     \label{fig:111-neb121-contcar}
 \end{figure}
 
@@ -152,7 +152,7 @@ IMAGES，NEB算法中过程image的数量，对于子过程设置为6或7；SPRI
     \subfigure[13]{
     \includegraphics[width=0.3\textwidth]{../data/111-131-neb2/13_CONTCAR.png}
     }
-    \caption{\ce{Li+}嵌入\ce{MASnCl3}的NEB131模型的部分image结构计算结果（image=00,04,05,07,10,11,13）}
+    \caption{\ce{MASnCl3}的NEB131模型的部分image结构计算结果（image=00,04,05,07,10,11,13）}
     \label{fig:111-neb131-contcar}
 \end{figure}
 
@@ -182,7 +182,7 @@ IMAGES，NEB算法中过程image的数量，对于子过程设置为6或7；SPRI
     \subfigure[16]{
     \includegraphics[width=0.3\textwidth]{../data/111-212n-neb3/16_CONTCAR.png}
     }
-    \caption{\ce{Li+}嵌入\ce{MASnCl3}的NEB212模型的部分image结构计算结果（image=00,03,05,08,11,12,14,16）}
+    \caption{\ce{MASnCl3}的NEB212模型的部分image结构计算结果（image=00,03,05,08,11,12,14,16）}
     \label{fig:111-neb212-contcar}
 \end{figure}
 
@@ -211,11 +211,167 @@ IMAGES，NEB算法中过程image的数量，对于子过程设置为6或7；SPRI
 对于锂金属电极保护膜而言，低能垒意味着更高的离子迁移数，保证了锂电池的工作性能。
 图\ref{fig:111-barrier}即为\ce{MASnCl3}体系下 \ce{Li+}迁移导致的体系能量变化。
 首先，由图可以直接获得迁移能垒：NEB121、NEB131和NEB212的能垒分别为 \SI{0.29}{eV}、\SI{0.51}{eV}和 \SI{0.32}{eV}。
+该结果与Yao等人\upcite{yinMetalChloridePerovskite2020}的计算结果 \SI{0.45}{eV} 基本一致，但本课题使用更精确的计算方法，结果更为可靠。
+该迁移能垒与锂离子电池中固态电解质的迁移能垒相近，这意味着有机金属钙钛矿属于快锂离子导体。
+其次，不同方向的迁移能垒存在明显差异，即具有各向异性。
+该现象没有得到Yao等人\upcite{yinMetalChloridePerovskite2020}的注意。
+各向异性的产生来源于无机框架中的甲胺离子取向。
+理想结构中，甲胺离子的碳氮键与晶格的b、c方向相近，与a方向垂直；
+相应的，锂离子在b方向（NEB121）、c方向（NEB212）的迁移能垒低于a方向（NEB131），
+即锂离子迁移方向与甲胺离子取向相近时，迁移能垒相对较低；与取向垂直时，迁移能垒相对较高。
+该结论同样适用于\ce{MASnBr3}、\ce{MASnI3}体系（图\ref{fig:112-barrier}和图\ref{fig:113-barrier}）。
 
-结构
-能垒
-氢键对能垒的贡献
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{112-all-barrier.png}
+    \caption{\ce{Li+}在\ce{MASnBr3}中迁移时体系能量变化}
+    \label{fig:112-barrier}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{113-all-barrier.png}
+    \caption{\ce{Li+}在\ce{MASnI3}中迁移时体系能量变化}
+    \label{fig:113-barrier}
+\end{figure}
+
+为揭示上述各向异性的产生原因，有必要先对迁移过程中的能量变化进行分析。
+根据计算模拟结果，可以将锂离子迁移过程分解为两部分：甲胺离子的转动和锂离子的移动。
+锂离子的嵌入对甲胺离子产生位阻，促使甲胺离子转动以降低整体能量；
+甲胺离子的转动又为锂离子的移动提供空间。
+由于甲胺离子相对庞大，并且锂离子迁移过程中体系的8个甲胺离子都会发生不同程度的旋转，因此甲胺锂离子的转动在完整的迁移过程中占有很大比例。
+根据章节\ref{ch:pos}甲胺锂离子的取向对体系能量的影响主要源于甲胺离子与无机框架中卤原子所成氢键的强弱。
+因此，对迁移过程中的所有氢键键能变化进行统计。
+为提高准确性，将甲基端对卤原子所成的微弱氢键同样加入考虑。
+根据章节 \ref{ch:bcp}的结论，氢键的键能与bcp处电子密度成正比关系，但存在正向偏差，无能定量计算。
+所以，仅对迁移过程中的所有氢键bcp处电子密度进行统计，半定量地表示氢键键能变化。
+
+\begin{figure}[htbp]
+    \centering
+    \subfigure{
+    \includegraphics[width=0.3\textwidth]{111-121-barrier.png}
+    }
+    \subfigure{
+    \includegraphics[width=0.3\textwidth]{111-131-barrier.png}
+    }
+    \subfigure{
+    \includegraphics[width=0.3\textwidth]{111-212-barrier.png}
+    } \\ 
+    \subfigure{
+    \includegraphics[width=0.3\textwidth]{111-121-H-bcp-sum.png}
+    }
+    \subfigure{
+    \includegraphics[width=0.3\textwidth]{111-131-H-bcp-sum.png}
+    }
+    \subfigure{
+    \includegraphics[width=0.3\textwidth]{111-212-H-bcp-sum.png}
+    } 
+    \caption{\ce{MASnCl3}体系中NEB121、NEB131和NEB212模型能量变化和氢键bcp处电子密度总和变化}
+    \label{fig:111-barrier-bcp}
+\end{figure}
+
+总能量与氢键bcp处电子密度总和的变化如图\ref{fig:111-barrier-bcp}所示。
+氢键bcp处电子密度总和半定量的反映了体系氢键总键能。
+NEB121、NEB131的能量与氢键总键能的变化趋势向相反，极值点十分吻合。
+当氢键总键能升高时，意味着体系形成数量更多、强度更高的氢键，相应的体系总能量下降。
+相比而言，NEB212的结果吻合度并不高，氢键键能变化幅度更小。
+对比NEB121、NEB131和NEB212的结构可以发现，NEB212的无机八面体旋转得更为明显。
+由此推测NEB212在计算模拟时进行了“过度优化”，通过调整无机框架，使体系在甲胺离子旋转时依然形成较高强度的氢键。
+
+对于其余的\ce{MASnBr3}、\ce{MASnI3}和 \ce{MAPbI3}三种体系，上述结论同样适用。
+
+综上，甲胺离子旋转导致的氢键断裂和形成，以及由此引起的无机框架畸变，影响了锂离子迁移过程中能量变化。
 
 \subsection{过渡态结构}
 
+计算模拟初步表明锂离子在\ce{MASnCl3}等体系下具有较低的迁移能垒，该现象与甲胺离子形成的氢键有关。
+为深入说明该原因，有必要针对迁移过程中的过渡态结构进行分析，通过与初始结构对比，确定低能能垒的原因。
+
+针对\ce{MASnCl3}体系下NEB121模型，选择其中的过渡态图像03、05和10进行体系结构和电子结构的分析。
+
+\begin{figure}[htbp]
+    \centering
+    \subfigure{
+    \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/03/CONTCAR.png}
+    }
+    \subfigure{
+    \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/05/CONTCAR.png}
+    }
+    \subfigure{
+    \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/10/CONTCAR.png}
+    } \\ 
+    \subfigure{
+    \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/03/CHGDIFF.png}
+    }
+    \subfigure{
+    \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/05/CHGDIFF.png}
+    }
+    \subfigure{
+    \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/10/CHGDIFF.png}
+    } 
+    \caption{\ce{MASnCl3}NEB121模型中图像03、05和10的体系结构和电荷密度差分}
+    \label{fig:111-121-trans-contcar-diff}
+\end{figure}
+
+\begin{figure}[htbp]
+    \centering
+    \subfigure{
+    \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/03/CHGDIFF-plan.png}
+    }
+    \subfigure{
+    \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/05/CHGDIFF-plan.png}
+    }
+    \subfigure{
+    \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/10/CHGDIFF-plan.png}
+    } \\ 
+    \subfigure{
+    \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/03/CHGDIFF-2D.png}
+    }
+    \subfigure{
+    \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/05/CHGDIFF-2D.png}
+    }
+    \subfigure{
+    \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/10/CHGDIFF-2D.png}
+    } 
+    \caption{\ce{MASnCl3}NEB121模型中图像03、05和10的电荷密度差分截面图}
+    \label{fig:111-121-trans-diff-plan}
+\end{figure}
+
+图\ref{fig:111-121-trans-contcar-diff}为过渡态03、05和10的体系结构和电荷密度差分。
+由图可知，锂离子嵌入导致的空间电荷密度变化，在形式上与pos1等嵌入点结构相似，
+均表现为锂离子与临近卤原子间电荷密度明显增多，锂离子与甲胺离子的甲基之间电荷密度少量增多。
+
+\begin{table}[htbp]
+    \begin{center}
+        \caption{锂离子与其临近原子（团）的整体电荷数（\ce{Li}1号、\ce{H}14号、\ce{C}6号、\ce{CH3}6号、\ce{NH3}6号、\ce{CH3NH3}6号、\ce{Cl}6号和\ce{Sn}2号，单位\si{e}）}
+        \begin{tabular}{ccccccccc}
+            \toprule
+             & \ce{Li} & \ce{H} & \ce{C} & \ce{CH3} & \ce{NH3} & \ce{CH3NH3} & \ce{Cl} & \ce{Sn} \\
+            \midrule
+            理想结构 & - & +0.073 & +0.198 & +0.482 & +0.327 & +0.808 & -0.705 & +1.272\\
+            无 \ce{Li+}03结构 & (+1.000) & +0.099 & +0.193 & +0.484 & +0.318 & +0.802 & -0.694 & +1.252 \\
+            \ce{Li+}嵌入03结构 & +0.894 & +0.077 & +0.137 & +0.453 & +0.335 & +0.788 & -0.730 & +1.271 \\
+            \ce{Li+}嵌入pos1结构 & +0.901 & +0.082 & +0.186 & +0.439 & +0.341 & +0.780 & -0.724 & +1.287\\
+            \bottomrule
+        \end{tabular}
+        \label{tb:trans-bader}
+    \end{center}
+\end{table}
+
+针对过渡态03进行bader电荷计算，并与初始结构pos1的bader电荷计算结果相比较。
+根据表\ref{tb:trans-bader}可知，过渡态03较初始态pos1的bader电荷计算结果仅存在微小差异。
+这意味着锂离子迁移过程中体系原子间并未发生明显的电荷转移。
+
+综上，可以确定，影响了锂离子迁移过程中能量变化的主要因素为甲胺离子与卤原子间的氢键，以及锂离子与无机框架中卤原子所成离子键。
+
 \section{结论}
+
+该部分分别建立了\ce{MASnCl3}、\ce{MASnBr3}、\ce{MASnI3}和 \ce{MAPbI3}四种体系的三种锂离子迁移模型，并对计算获得的过渡态结构进行电子自洽计算。
+
+计算结果表明，
+\begin{enumerate}
+    \item 锂离子在有机金属卤化物钙钛矿中具有较低的迁移能垒（\SI{0.2}{eV}至\SI{0.5}{eV}），且能垒具有各向异性，在与甲胺离子原本取向相近的方向上能垒相对较低；
+    \item 甲胺离子随锂离子迁移而发生旋转，以较低的能量代价减小锂离子位阻，该旋转机制是迁移能垒较低和各向异性的原因；
+    \item 锂离子在迁移过程中，与周围3至5个卤原子形成离子键，导致无机八面体发生畸变，但无机框架依然维持稳定。 
+\end{enumerate}
+

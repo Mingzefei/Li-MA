@@ -2,12 +2,28 @@
 
 % 中英文摘要
 \begin{cabstract}
-本篇文档主要介绍{\bf 北航毕业设计论文\LaTeX{}模板}使用和相关软件环境的安装配置，
-以及本模板所遵循的开源协议等。
+
+锂离子电池凭借自身容量大、工作电压高等优点，成为最常用的电化学储能设备之一；
+然而，枝晶生长等问题限制了锂金属电极的应用。
+当前Yao等人开发出新型的氯锡甲胺（\ce{MASnCl3}）钙钛矿保护膜，改善了锂电池工作性能，但未深入揭示锂离子在该类保护膜中的迁移机制，没有给出该类新型保护膜的设计指导。
+针对该问题，本课题围绕该类有机金属卤化物钙钛矿保护膜中锂离子输运行为展开研究，利用基于密度泛函的第一性原理计算模拟迁移过程，揭示相关机理。
+本课题的主要研究内容为：
+\begin{enumerate}
+    \item 利用分子中的原子理论分析该类钙钛矿中氢键强度。基于近期文献开发的利用理论中bcp处电子密度估计氢键强度的方法，实现并验证了适用于VASP软件计算结果的氢键强度估计方法。
+    \item 建立并计算锂离子嵌入模型。向\ce{MASnCl3}等钙钛矿体系的三个不等价位点分别嵌入锂离子，并进行结构优化和电子自洽计算。由于甲胺离子的胺基与无机框架中的卤原子形成较强氢键，锂离子嵌入产生的位阻会导致甲胺离子取向改变，使形成较弱氢键的甲基接近锂离子，并与锂离子产生极弱的相互作用。
+    \item 建立并计算锂离子迁移模型。通过分段合并的方法，模拟了不同方向上锂离子在等价点位间迁移的过程。锂离子迁移伴随着甲胺离子旋转和无机八面体畸变，但无机框架维持基本结构。锂离子的迁移具有各向异性，在接近原甲胺离子取向的方向上迁移能垒最低，在垂直取向的方向上能垒最高。甲胺离子相关的氢键和锂离子相关的离子键的成键断键是影响迁移过程中能量变化的主要因素。
+\end{enumerate}
+
 \end{cabstract}
 
 \begin{eabstract}
-Here is the Abstract in English. And this is a test sentence, just for
-a test to see how the buaathesis works. You can just ignore this.\par
-This is another pargraph.
+Lithium ion batteries has became one of the most commonly used electrochemical energy storage devices with advantages of its large capacity and high working voltage. However, problems, such as dendrite growth, limit the application of lithium metal electrodes.
+Yao et al. developed a new type of \ce{MASnCl3} perovskite protective film, improving the lithium battery performance, but migration mechanism for lithium ion in the protective film was not revealed.
+Therefore, to reveals the related mechanism, this thesis focuses on lithium ion transport in this class of organic metal halide perovskite protective film, and simulates this migration process by the first principles calculation based on density functional theory.
+The main contents of this thesis are as follows:
+\begin{enumerate}
+    \item Analysis of hydrogen bonding strength in the perovskite by Atoms in Molecule Theory(AIM). Based on the method reported by recent literature, which using electronic density at AIM's bcp to estimate strength of hydrogen bond, the method suitable for VASP software is implemented and verified to estimate strength of hydrogen bond.
+    \item Establishing and calculating the lithium ion embedded model. Lithium ion is embedded into three inequitable position in MASnCl3 et al. perovskite structures correspondingly; then the whole structures are optimized and calculated by electronic self-consistent. Because amido in methylamine ion forms strong hydrogen bonds with inorganic framework's halogen atoms, steric hindrance cased by lithium ion drivens methyl, which forms relatively weak hydrogen bonds, close to lithium ion and weakly interacte with it.
+    \item Establishing and calculating the lithium ion migration model. Lithium ion's migrations between equivalence embedded points in different directions are simulated by split-and-merge method. Lithium ion's migration make methylamine ions rotated and inorganic octahedrons distorted, but inorganic framework still  maintains the basic structure. The lithium ion's migration is anisotropic: the energy barrier in the direction of close to the original orientation of methylamine ion is lower than one in the direction of the vertical orientation. It is hydrogen bond formed by methylamine ion and ionic bond formed by lithium ion that mainly influence the energy change in the process of migration.
+\end{enumerate}
 \end{eabstract}
