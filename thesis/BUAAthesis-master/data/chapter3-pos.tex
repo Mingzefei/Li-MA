@@ -19,7 +19,7 @@
 根据绪论章节对有机金属卤化物钙钛矿的介绍，该类钙钛矿在不同温度下存在不同晶格类型，且其中的有机分子也会导致无机八面体的倾斜。
 当温度为 \SI{0}{K} 时，有机分子的振动、旋转等影响可被忽略，并依据能量最低，按相同取向填入无机框架。
 此时有机金属卤化物钙钛矿整体呈正交相。
-可以称该结构为理想结构。
+本课题称这样的结构为“理想结构”，即有机分子取向完全相同，并于无机八面体达到最低能量距离，无机框架基本维持正交。
 
 利用 The Materials Project数据库\footnote{https://materialsproject.org}及文献\cite{yinMetalChloridePerovskite2020}表征的晶格参数等数据，搭建 \ce{MASnCl3}、\ce{MASnBr3}、\ce{MASnI3}和 \ce{MAPbI3} （\ce{MA}为甲胺离子\ce{CH3NH3+}）四种体系的结构模型。
 为之后研究锂离子嵌入和迁移时降低锂离子间影响，对钙钛矿模型进一步扩胞处理，形成$2\times2\times2$的超胞；
@@ -28,7 +28,7 @@
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.75\textwidth]{../data/111-ideal/better-CONTCAR.png}
+    \includegraphics[width=0.5\textwidth]{../data/111-ideal/better-CONTCAR.png}
     \caption{扩胞处理后的钙钛矿理想结构（绿色球为卤原子，深灰色球为 \ce{Sn}或 \ce{Pb}，浅灰色、棕色和粉色球分别为 \ce{N}、\ce{C}和 \ce{H}）}
     \label{fig:ideal-struc}
 \end{figure}
@@ -43,7 +43,7 @@
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.75\textwidth]{../data/111-ideal/3pos.png}
+    \includegraphics[width=0.5\textwidth]{../data/111-ideal/3pos.png}
     \caption{三个不等价的面心（红球所示）}
     \label{fig:3pos}
 \end{figure}
@@ -90,7 +90,7 @@
 
 \begin{figure}[ht]
     \centering
-    \includegraphics[width=0.75\textwidth]{../data/111-ideal/CONTCAR.png}
+    \includegraphics[width=0.5\textwidth]{../data/111-ideal/CONTCAR.png}
     \caption{结构优化后的\ce{MASnCl3}理想结构}
     \label{fig:111-ideal-contcar}
 \end{figure}
@@ -163,7 +163,7 @@ pos2位置的“头碰头”形式，较pos1和pos3的“肩并肩”形式，�
 {\bf (A)电子态密度}
 
 作为光电半导体材料，人们更多的关注有机金属卤化物钙钛矿的能带结构、电子态密度（density of states，DOS），从中可以获得诸多光电性质。
-当该材料应用于锂金属电极保护层时，需要起到绝缘、避免短路的作用，因此其导电性有必要进行模拟验证，特别是当锂离子嵌入时仍能起到绝缘作用。
+当该材料应用于锂金属电极保护层时，需要满足绝缘，否则可能引起电池短路，因此其导电性有必要进行模拟验证，特别是当锂离子嵌入时仍能起到绝缘作用。
 
 本课题由于使用$2\times2\times2$超胞模型，直接进行能带结构计算需考虑能带折叠问题，
 并且当锂离子嵌入钙钛矿时，体系的对称性进一步降低，无高对称点，无法设置能带计算所必须的K点路径。
@@ -313,10 +313,8 @@ AIM理论根据原子核和电子密度将空间划分为区域，通过分别�
 
 为进一步说明体系中甲胺离子与锂离子间的相互作用，计算并分析体系的电子局域化函数（Electron Localization function，ELF）。
 
-ELF用于描述指定位置处的电子，在其附近找到与其自旋相同的电子的概率，可以表征该处电子的局域化程度。
-根据定义，当ELF=0时，电子完全离域化；
-当ELF=0.5时，电子表现为自由电子气；
-当ELF=1时，电子完全局域化。
+ELF定义为指定位置处的电子，在其附近找到与其自旋相同的电子的概率，取值在0至1之间，分别表示电子完全离域化和电子完全局域化。当数值介于两者之间时，电子表现为自由电子气。
+该函数表征了电子的局域化程度。
 
 \begin{figure}[htbp]
     \centering

@@ -4,7 +4,8 @@
 
 \section{引言}
 
-在有机金属卤化物钙钛矿系统中，有机分子的氢原子和无机框架中的卤素原子容易形成氢键，进而影响体系的结构、性能。为此，人们发挥计算模拟的优势，针对氢键强度，及其对整体结构的影响，进行研究。
+在有机金属卤化物钙钛矿系统中，有机分子的氢原子和无机框架中的卤原子容易形成氢键，进而影响体系的结构、性能。
+为此，人们发挥计算模拟的优势，针对氢键强度，及其对整体结构的影响，进行研究。
 例如，Svane等人\upcite{svaneHowStrongHydrogen2017}开发出计算该体系氢键强度的方法，并发现该类化合物的氢键键能明显弱于典型的分子氢键；
 Varadwaj等人\upcite{varadwajSignificanceHydrogenBonding2019}深入研究了氢键和其他非共价相互作用对无机八面体倾斜的影响。
 
@@ -14,11 +15,12 @@ Varadwaj等人\upcite{varadwajSignificanceHydrogenBonding2019}深入研究了氢
 
 \section{利用分子中的原子理论研究氢键}
 
-分子中的原子理论\upcite{baderQuantumTheoryMolecular1991b}（Atoms in molecules，AIM）是一种量子化学模型，基于电子密度标量场的拓扑性质划分空间，使得每个区域仅包含一个原子核，从而定义出量子化学观点下的原子，并给出原子的部分性质。
+分子中的原子理论\upcite{baderQuantumTheoryMolecular1991b}（Atoms in molecules，AIM）是量子化学中，基于电子密度标量场的拓扑性质划分空间的理论模型。
+通过划分，使得每个区域仅包含一个原子核，从而定义出量子化学观点下的原子，并给出原子的部分性质。
 该理论在提出之后不断发展，广泛应用于化学领域理论研究，特别是原子间的成键分析。
 
-根据AIM理论，当且仅当两个原子之间被一个零通量面分隔开，且该零通量面上有一个$(3,-1)$临界点时，认为两个原子间存在键。
-其中临界点指电子密度梯度为零的点，$(3,-1)$临界点指该临界点的海森矩阵的本征值中有两个负值和一个正值，该点被称为键临界点（bond critical point，bcp）。
+AIM理论对原子成键的定义如下：当且仅当两个原子之间被一个零通量面分隔开，且该零通量面上存在一个$(3,-1)$临界点\upcite{baderQuantumTheoryMolecular1991b}。
+其中$(3,-1)$临界点指电子密度梯度为零且海森矩阵的本征值为两个负值和一个正值的点，该点被称为键临界点（bond critical point，bcp）\upcite{baderQuantumTheoryMolecular1991b}。
 几何意义上，键临界点为电子密度标量场上的一阶鞍点；代数意义上，键临界点为满足如下关系式的空间位置：
 
 \begin{gather}
@@ -51,7 +53,8 @@ Varadwaj等人\upcite{varadwajSignificanceHydrogenBonding2019}深入研究了氢
     \label{fig:bcp-energy}
 \end{figure}
 
-图\ref{fig:bcp-energy}(a)为针对所有氢键体系的bcp处电子密度和氢键键能直接拟合的结果，尽管决定系数 $R^2$ 较好，但平均绝对百分误差 MAPE 很大，因此拟合结果在预测氢键键能上无实际意义；图\ref{fig:bcp-energy}(b)和(c)为针对不带电氢键体系和带电体系的bcp处电子密度和氢键键能分别进行拟合的结果，决定系数 $R^2$ 和 平均绝对百分误差 MAPE 结果均很好。
+图\ref{fig:bcp-energy}(a)为针对所有氢键体系的bcp处电子密度和氢键键能直接拟合的结果，尽管决定系数 $R^2$ 较好，但平均绝对百分误差 MAPE 很大，不能保证该关系式预测结果的准确性；
+图\ref{fig:bcp-energy}(b)和(c)为针对不带电氢键体系和带电体系的bcp处电子密度和氢键键能分别进行拟合的结果，决定系数 $R^2$ 和 平均绝对百分误差 MAPE 结果均理想，预测结果更为可靠。
 
 但是该工作主要基于量子化学方法和分子体系，尚无充分的数据证明关系式适用于DFT理论下的固体体系。
 本课题将对此进行验证。
@@ -117,7 +120,7 @@ VASP 的输出文件 CHGCAR 中记录了体系的原子核位置和价电子空�
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.75\textwidth]{bcp-test1.png}
+    \includegraphics[width=0.5\textwidth]{bcp-test1.png}
     \caption{部分氢键体系bcp处电子密度的VASP计算值与文献值}
     \label{fig:bcp-test1}
 \end{figure}
@@ -161,7 +164,10 @@ VASP对体系电子密度的计算结果，除受原子位置、赝势、波函�
 
 \section{结论}
 
-该部分实现并验证了根据VASP计算结果求解AIM理论中bcp处电子密度的方法，
-发现使用VASP的DFT计算较量子化学方法会高估bcp处电子密度；
-并将该方法应用于有机金属卤化物钙钛矿体系的氢键强度估计，
-通过与文献值比较，认为该方法可以简单、半定量地获得体系的氢键强度。
+该部分实现并验证了根据VASP计算结果求解AIM理论中bcp处电子密度的方法。
+试验结果表明：
+\begin{enumerate}
+    \item 使用VASP的DFT计算较量子化学方法会高估bcp处电子密度；
+    \item 该方法可以简单、半定量地获得有机金属卤化物钙钛矿体系的氢键强度；
+    \item 对于本课题体系，相关参数的最佳设置为：KPOINTS为$4 \times 4 \times 4$；ENCUT为$600$；NGF为$192$。
+\end{enumerate}
