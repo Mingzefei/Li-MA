@@ -26,9 +26,9 @@
 
 \begin{figure}[htbp]
     \centering
-    \subfigure{
+    \subfigure[pos1]{
     \includegraphics[width=0.45\textwidth]{../data/111-121-neb1/00_CONTCAR.png}}
-    \subfigure{
+    \subfigure[由pos1平移所得pos1-eq]{
     \includegraphics[width=0.45\textwidth]{../data/111-121-neb1/13_CONTCAR.png}}
     \caption{\ce{Li+}嵌入\ce{MASnCl3}pos1位点的结构优化后结构及利用算法生成b方向平移1个单位后的等价结构}
     \label{fig:111-pos1-eq}
@@ -69,16 +69,16 @@
 
 \begin{figure}[htbp]
     \centering
-    \subfigure{
+    \subfigure[NEB121]{
     \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/Li_path_CONTCAR.png}
     }
-    \subfigure{
+    \subfigure[NEB131]{
     \includegraphics[width=0.3\textwidth]{../data/111-131-neb2/Li_path_CONTCAR.png}
     }
-    \subfigure{
+    \subfigure[NEB212]{
     \includegraphics[width=0.3\textwidth]{../data/111-212n-neb3/Li_path_CONTCAR.png}
     }
-    \caption{NEB121、NEB131、NEB212迁移模型的示意图}
+    \caption{三种方向迁移模型的示意图}
     \label{fig:111-neb-Li-path}
 \end{figure}
 
@@ -219,21 +219,7 @@ IMAGES，NEB算法中过程image的数量，对于子过程设置为6或7；SPRI
 理想结构中，甲胺离子的碳氮键与晶格的b、c方向相近，与a方向垂直；
 相应的，锂离子在b方向（NEB121）、c方向（NEB212）的迁移能垒低于a方向（NEB131），
 即锂离子迁移方向与甲胺离子取向相近时，迁移能垒相对较低；与取向垂直时，迁移能垒相对较高。
-该结论同样适用于\ce{MASnBr3}、\ce{MASnI3}体系（图\ref{fig:112-barrier}和图\ref{fig:113-barrier}）。
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.75\textwidth]{112-all-barrier.png}
-    \caption{\ce{Li+}在\ce{MASnBr3}中迁移时体系能量变化}
-    \label{fig:112-barrier}
-\end{figure}
-
-\begin{figure}[htbp]
-    \centering
-    \includegraphics[width=0.75\textwidth]{113-all-barrier.png}
-    \caption{\ce{Li+}在\ce{MASnI3}中迁移时体系能量变化}
-    \label{fig:113-barrier}
-\end{figure}
+该结论同样适用于\ce{MASnBr3}、\ce{MASnI3}体系（见附录A，图\ref{fig:112-barrier}和图\ref{fig:113-barrier}）。
 
 为揭示上述各向异性的产生原因，有必要先对迁移过程中的能量变化进行分析。
 根据计算模拟结果，可以将锂离子迁移过程分解为两部分：甲胺离子的转动和锂离子的移动。
@@ -248,22 +234,22 @@ IMAGES，NEB算法中过程image的数量，对于子过程设置为6或7；SPRI
 
 \begin{figure}[htbp]
     \centering
-    \subfigure{
+    \subfigure[NEB121能量变化]{
     \includegraphics[width=0.3\textwidth]{111-121-barrier.png}
     }
-    \subfigure{
+    \subfigure[NEB131能量变化]{
     \includegraphics[width=0.3\textwidth]{111-131-barrier.png}
     }
-    \subfigure{
+    \subfigure[NEB212能量变化]{
     \includegraphics[width=0.3\textwidth]{111-212-barrier.png}
     } \\ 
-    \subfigure{
+    \subfigure[NEB121氢键bcp处电子密度总和变化]{
     \includegraphics[width=0.3\textwidth]{111-121-H-bcp-sum.png}
     }
-    \subfigure{
+    \subfigure[NEB131氢键bcp处电子密度总和变化]{
     \includegraphics[width=0.3\textwidth]{111-131-H-bcp-sum.png}
     }
-    \subfigure{
+    \subfigure[NEB212氢键bcp处电子密度总和变化]{
     \includegraphics[width=0.3\textwidth]{111-212-H-bcp-sum.png}
     } 
     \caption{\ce{MASnCl3}体系中NEB121、NEB131和NEB212模型能量变化和氢键bcp处电子密度总和变化}
@@ -291,49 +277,49 @@ NEB121、NEB131的能量与氢键总键能的变化趋势向相反，极值点�
 
 \begin{figure}[htbp]
     \centering
-    \subfigure{
+    \subfigure[03的体系结构]{
     \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/03/CONTCAR.png}
     }
-    \subfigure{
+    \subfigure[05的体系结构]{
     \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/05/CONTCAR.png}
     }
-    \subfigure{
+    \subfigure[10的体系结构]{
     \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/10/CONTCAR.png}
     } \\ 
-    \subfigure{
+    \subfigure[03的电荷密度差分]{
     \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/03/CHGDIFF.png}
     }
-    \subfigure{
+    \subfigure[05的电荷密度差分]{
     \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/05/CHGDIFF.png}
     }
-    \subfigure{
+    \subfigure[10的电荷密度差分]{
     \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/10/CHGDIFF.png}
     } 
-    \caption{\ce{MASnCl3}NEB121模型中图像03、05和10的体系结构和电荷密度差分}
+    \caption{\ce{MASnCl3}NEB121模型中过渡态的体系结构和电荷密度差分}
     \label{fig:111-121-trans-contcar-diff}
 \end{figure}
 
 \begin{figure}[htbp]
     \centering
-    \subfigure{
+    \subfigure[03的电荷密度差分示意图]{
     \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/03/CHGDIFF-plan.png}
     }
-    \subfigure{
+    \subfigure[05的电荷密度差分示意图]{
     \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/05/CHGDIFF-plan.png}
     }
-    \subfigure{
+    \subfigure[10的电荷密度差分示意图]{
     \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/10/CHGDIFF-plan.png}
     } \\ 
-    \subfigure{
+    \subfigure[03的电荷密度差分截面图]{
     \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/03/CHGDIFF-2D.png}
     }
-    \subfigure{
+    \subfigure[05的电荷密度差分截面图]{
     \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/05/CHGDIFF-2D.png}
     }
-    \subfigure{
+    \subfigure[10的电荷密度差分截面图]{
     \includegraphics[width=0.3\textwidth]{../data/111-121-neb1/10/CHGDIFF-2D.png}
     } 
-    \caption{\ce{MASnCl3}NEB121模型中图像03、05和10的电荷密度差分截面图}
+    \caption{\ce{MASnCl3}NEB121模型中过渡态的电荷密度差分}
     \label{fig:111-121-trans-diff-plan}
 \end{figure}
 

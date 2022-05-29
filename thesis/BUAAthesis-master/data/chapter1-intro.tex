@@ -5,13 +5,18 @@
 锂离子电池以其高工作电压、大容量等优点，在电化学储能领域引起人们极大的兴趣。
 但是，由于锂金属独特的活泼型，
 锂离子电池在充放电循环中极易发生金属电极体积膨胀、锂枝晶生长等现象，使得电池破坏、短路的风险大大提高；
-金属电极与电解液之间复杂的界面反应，以及循环中形成的“死锂”(图\ref{fig:Li-anode}a)\upcite{huaApplicationComputationalSimulation2020}会导致电池容量下降，降低电池效率。
+金属电极与电解液之间复杂的界面反应，以及循环中形成的“死锂”(图\ref{fig:Li-anode})会导致电池容量下降，降低电池效率。
 这些都阻碍了锂金属电极的应用范围。
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=1\textwidth]{Li-andoe.jpg}
-    \caption{(a)锂金属电极在充放电过程中产生锂枝晶和死锂；(b)抑制锂枝晶的方法}
+    \subfigure[锂枝晶和死锂]{
+    \includegraphics[width=0.23\textwidth]{Li-andoe-a.jpg}
+    }
+    \subfigure[抑制枝晶的方法]{
+    \includegraphics[width=0.71\textwidth]{Li-andoe-b.jpg}
+    }
+    \caption{锂金属电极在充放电过程中产生锂枝晶和死锂及抑制锂枝晶的方法\upcite{huaApplicationComputationalSimulation2020}}
     \label{fig:Li-anode}
 \end{figure}
 
@@ -39,11 +44,11 @@ Iddir等人\upcite{iddirLiIonDiffusion2010}对单斜\ce{Li2CO3}中锂离子迁�
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.3\textwidth]{perovskite.png}
-    \caption{有机金属卤化物钙钛矿的结构示意图}
+    \caption{有机金属卤化物钙钛矿的结构示意图（该图片来源于网络）}
     \label{fig:perovskite}
 \end{figure}
 
-钙钛矿的基本结构如图\ref{fig:perovskite}所示\footnote{图片来源于网络}，由B位金属离子和X位卤素原子形成无机框架，A位阳离子填充其中。
+钙钛矿的基本结构如图\ref{fig:perovskite}所示，由B位金属离子和X位卤素原子形成无机框架，A位阳离子填充其中。
 
 有机金属卤化物钙钛矿的晶格类型受温度影响很大。
 以 \ce{CH3NH3PbI3}（如图\ref{fig:temp-struc}所示）为例，不同温度下，晶格中的\ce{PbI3}八面体发生不同程度的旋转和倾斜，从而产生不同的相：
@@ -51,7 +56,15 @@ Iddir等人\upcite{iddirLiIonDiffusion2010}对单斜\ce{Li2CO3}中锂离子迁�
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=0.75\textwidth]{temp-struc.png}
+    \subfigure[正交相]{
+    \includegraphics[width=0.3\textwidth]{temp-struc-a.png}
+    }
+    \subfigure[四方相]{
+    \includegraphics[width=0.3\textwidth]{temp-struc-b.png}
+    }
+    \subfigure[立方相]{
+    \includegraphics[width=0.3\textwidth]{temp-struc-c.png}
+    }
     \caption{不同温度下碘铅甲胺钙钛矿的晶体结构（框架中黑球、灰球分别为\ce{Pb}和\ce{I}，有机分子中灰色、浅灰色和白球分别为\ce{N}、\ce{C}和\ce{H}\upcite{liRecentProgressOrganohalide2015}）}
     \label{fig:temp-struc}
 \end{figure}
@@ -169,7 +182,7 @@ GGA由Perdew\upcite{1review_28}提出，额外考虑了周围电子密度对$V_{
 
 \subsection{微动弹性带方法}
 
-对于化学反应和原子迁移而言，在确定反应物（初始位置）和生成物（最终位置）的结构后，理论上两者间存在能量最小路径（minimum energy path,MEP），而过渡态为其上的最高点，即一阶鞍点。
+对于化学反应和原子迁移而言，在确定反应物（初始位置）和生成物（最终位置）的结构后，理论上两者间存在能量最小路径（minimum energy path，MEP），而过渡态为其上的最高点，即一阶鞍点。
 过渡态与反应物的能量之差即为反应能垒，是研究反应过程的最为基础、重要的参数。
 此外，对比过渡态与反应物的结构变化，有助于深入认识反应机理。
 

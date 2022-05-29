@@ -48,8 +48,16 @@ AIM理论对原子成键的定义如下：当且仅当两个原子之间被一�
 
 \begin{figure}[htbp]
     \centering
-    \includegraphics[width=1\textwidth]{bcp-energy.png}
-    \caption{(a)所有计算样本；(b)电中性计算样本；(c)非电中性计算样本。}
+    \subfigure[所有计算样本]{
+    \includegraphics[width=0.3\textwidth]{bcp-energy-a.png}
+    }
+    \subfigure[电中性计算样本]{
+    \includegraphics[width=0.3\textwidth]{bcp-energy-b.png}
+    }
+    \subfigure[非电中性计算样本]{
+    \includegraphics[width=0.3\textwidth]{bcp-energy-c.png}
+    }
+    \caption{氢键键能与bcp处电子能量密度的关系}
     \label{fig:bcp-energy}
 \end{figure}
 
@@ -138,13 +146,13 @@ VASP对体系电子密度的计算结果，除受原子位置、赝势、波函�
 
 \begin{figure}[htbp]
     \centering
-    \subfigure{
+    \subfigure[KPOINTS测试]{
         \includegraphics[width=0.3\textwidth]{kpoint-test.png}
     }
-    \subfigure{
+    \subfigure[ENCUT测试]{
         \includegraphics[width=0.3\textwidth]{encut-test.png}
     }
-    \subfigure{
+    \subfigure[NGF测试]{
         \includegraphics[width=0.3\textwidth]{ngf-test.png}
     }
     \caption{VASP的计算参数(a)KPOINTS；(b)ENCUT和(c)NGF对bcp处电子密度计算精度的测试}
