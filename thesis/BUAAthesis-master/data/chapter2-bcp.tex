@@ -10,7 +10,7 @@
 Varadwaj等人\upcite{varadwajSignificanceHydrogenBonding2019}深入研究了氢键和其他非共价相互作用对无机八面体倾斜的影响。
 
 对于本文研究的体系，大量存在的氢键可能对锂离子的迁移路径及能垒产生不可忽略的影响。
-根据文献\cite{svaneHowStrongHydrogen2017}，有机金属卤化物钙钛矿中氢键键能为\SI{0.09}{eV}至 \SI{0.26}{eV}，与文献\cite{yinMetalChloridePerovskite2020}初步计算的锂离子迁移能垒 \SI{0.45}{eV} 相当。
+根据文献\upcite{svaneHowStrongHydrogen2017}，有机金属卤化物钙钛矿中氢键键能为\SI{0.09}{eV}至 \SI{0.26}{eV}，与文献\upcite{yinMetalChloridePerovskite2020}初步计算的锂离子迁移能垒 \SI{0.45}{eV} 相当。
 因此，为研究氢键对锂离子迁移过程中能垒的影响，有必要开发出利用 VASP 计算结果快速获取体系氢键键能等性质的方法。
 
 \section{利用分子中的原子理论研究氢键}
@@ -57,7 +57,7 @@ AIM理论对原子成键的定义如下：当且仅当两个原子之间被一�
     \subfigure[非电中性计算样本]{
     \includegraphics[width=0.3\textwidth]{bcp-energy-c.png}
     }
-    \caption{氢键键能与bcp处电子能量密度的关系}
+    \caption{氢键键能与bcp处电子能量密度的关系\upcite{emamianExploringNaturePredicting2019}}
     \label{fig:bcp-energy}
 \end{figure}
 
@@ -121,9 +121,9 @@ VASP 的输出文件 CHGCAR 中记录了体系的原子核位置和价电子空�
 
 \subsection{VASP计算结果的准确性}
 
-文献\cite{emamianExploringNaturePredicting2019}中使用量子化学方法进行计算，而VASP软件通过DFT方法求解能带进行计算，两者计算方法存在差异。因此，有必要验证两种方法对于bcp处电子密度计算的一致性。
+文献\upcite{emamianExploringNaturePredicting2019}中使用量子化学方法进行计算，而VASP软件通过DFT方法求解能带进行计算，两者计算方法存在差异。因此，有必要验证两种方法对于bcp处电子密度计算的一致性。
 
-考虑到本课题研究的体系中多为 $\mathrm{N}-\mathrm{H}\cdots\mathrm{X}$（其中$\mathrm{X}=\mathrm{Cl,Br,I}$）类氢键，这里选用文献\cite{emamianExploringNaturePredicting2019}中 $\rm FH \cdots NH_3$（28号）、$\rm H_2NH \cdots F^-$（33号）和$\rm HF\cdots HNH_3^+$（30号）分子体系进行建模和VASP 计算，并求解bcp处电子密度。
+考虑到本课题研究的体系中多为 $\mathrm{N}-\mathrm{H}\cdots\mathrm{X}$（其中$\mathrm{X}=\mathrm{Cl,Br,I}$）类氢键，这里选用文献\upcite{emamianExploringNaturePredicting2019}中 $\rm FH \cdots NH_3$（28号）、$\rm H_2NH \cdots F^-$（33号）和$\rm HF\cdots HNH_3^+$（30号）分子体系进行建模和VASP 计算，并求解bcp处电子密度。
 建立 \SI{15x15x15}{\angstrom} 晶胞，使用The Materials Project数据库\footnote{https://materialsproject.org}中分子数据，其余参数使用软件建议值或默认值。最终结果如图\ref{fig:bcp-test1}。
 
 \begin{figure}[htbp]
@@ -133,7 +133,7 @@ VASP 的输出文件 CHGCAR 中记录了体系的原子核位置和价电子空�
     \label{fig:bcp-test1}
 \end{figure}
 
-根据计算结果，利用VASP进行的DFT计算获得的bcp处电子密度较文献\cite{emamianExploringNaturePredicting2019}中使用的量子化学方法存在正向偏差，偏高 \SI{13}{\percent} 至 \SI{21}{\percent}。
+根据计算结果，利用VASP进行的DFT计算获得的bcp处电子密度较文献\upcite{emamianExploringNaturePredicting2019}中使用的量子化学方法存在正向偏差，偏高 \SI{13}{\percent} 至 \SI{21}{\percent}。
 该结果推测是由计算方法导致。一般而言，量子化学方法对分子体系的计算更为准确，而利用VASP进行的DFT计算，由于波函数展开方式、赝势等原因，对分子体系的计算更易产生偏差。
 当前误差对于本课题仍可接受，可用于成键强度的定性比较。
 
@@ -147,7 +147,7 @@ VASP对体系电子密度的计算结果，除受原子位置、赝势、波函�
 \begin{figure}[htbp]
     \centering
     \subfigure[KPOINTS测试]{
-        \includegraphics[width=0.3\textwidth]{kpoint-test.png}
+        \includegraphics[width=0.31\textwidth]{kpoint-test.png}
     }
     \subfigure[ENCUT测试]{
         \includegraphics[width=0.3\textwidth]{encut-test.png}
@@ -166,9 +166,9 @@ VASP对体系电子密度的计算结果，除受原子位置、赝势、波函�
 
 \subsection{结果的有效性}
 
-文献\cite{svaneHowStrongHydrogen2017}通过分割有机阳离子和无机框架的方法，计算了 \ce{MAPbI3} 等体系中的氢键键能，为 \SI{0.09}{eV}至 \SI{0.27}{eV}平均每个阳离子（\ce{MAPbI3}体系为\SI{0.27}{eV}平均每个阳离子，\SI{0.09}{eV}平均每个氢键）。
-本课题针对 \ce{MAPbI3} 体系建模计算，发现其中的有机阳离子提供的氢键配体数量更为复杂，而非文献\cite{svaneHowStrongHydrogen2017}中给出的固定数量3；
-但是，通过将VASP求解得到的 bcp处电子密度 $0.012 \quad \mathrm{a.u.}$ 至 $0.017 \quad \mathrm{a.u.}$代入文献\cite{emamianExploringNaturePredicting2019}所提供的电中性体系氢键键能拟合关系式，可得相应的单个氢键键能为\SI{0.08}{eV}至 \SI{0.13}{eV}，与文献值\cite{svaneHowStrongHydrogen2017}\SI{0.09}{eV}相比略有高估，这与上文 VASP 高估 bcp 处电子密度的结论相一致。
+文献\upcite{svaneHowStrongHydrogen2017}通过分割有机阳离子和无机框架的方法，计算了 \ce{MAPbI3} 等体系中的氢键键能，为 \SI{0.09}{eV}至 \SI{0.27}{eV}平均每个阳离子（\ce{MAPbI3}体系为\SI{0.27}{eV}平均每个阳离子，\SI{0.09}{eV}平均每个氢键）。
+本课题针对 \ce{MAPbI3} 体系建模计算，发现其中的有机阳离子提供的氢键配体数量更为复杂，而非文献\upcite{svaneHowStrongHydrogen2017}中给出的固定数量3；
+但是，通过将VASP求解得到的 bcp处电子密度 $0.012 \quad \mathrm{a.u.}$ 至 $0.017 \quad \mathrm{a.u.}$代入文献\upcite{emamianExploringNaturePredicting2019}所提供的电中性体系氢键键能拟合关系式，可得相应的单个氢键键能为\SI{0.08}{eV}至 \SI{0.13}{eV}，与文献值\upcite{svaneHowStrongHydrogen2017}\SI{0.09}{eV}相比略有高估，这与上文 VASP 高估 bcp 处电子密度的结论相一致。
 
 \section{结论}
 
